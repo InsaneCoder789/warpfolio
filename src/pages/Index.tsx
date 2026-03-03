@@ -138,7 +138,7 @@ const Index = () => {
             {/* Skills */}
             <div ref={skillsRef} className="max-w-3xl">
               <TerminalBlock command="neofetch --skills" delay={2.0}>
-                <div className="flex flex-col md:flex-row gap-6 mt-1">
+                <div className="flex flex-col md:flex-row gap-6 mt-1 overflow-hidden">
                   <div className="space-y-2 flex-1">
                     <div className="text-primary text-xs font-semibold mb-3 flex items-center gap-1.5">
                       <Code2 className="w-3.5 h-3.5" /> Languages & Frameworks
