@@ -7,7 +7,7 @@ import TypingText from "@/components/TypingText";
 import ProjectCard from "@/components/ProjectCard";
 import SkillBar from "@/components/SkillBar";
 import CommandInput from "@/components/CommandInput";
-import HackerOverlay from "@/components/HackerOverlay";
+
 import StatusBar from "@/components/StatusBar";
 import { useGithubRepos } from "@/hooks/useGithubRepos";
 
@@ -46,7 +46,7 @@ const Index = () => {
 
   return (
     <div className="min-h-screen bg-terminal-bg scanline relative">
-      <HackerOverlay />
+      
 
       <div className="relative z-10 flex flex-col min-h-screen">
         {/* Terminal Window — full screen */}
