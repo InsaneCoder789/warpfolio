@@ -1,18 +1,32 @@
 import { useRef, useCallback } from "react";
 import { motion } from "framer-motion";
-import { Github, Mail, MapPin, Code2, Terminal, Instagram, Twitter } from "lucide-react";
+import { Github, MapPin, Code2, Terminal, Instagram, Twitter, Loader2 } from "lucide-react";
 import TerminalTitleBar from "@/components/TerminalTitleBar";
 import TerminalBlock from "@/components/TerminalBlock";
 import TypingText from "@/components/TypingText";
 import ProjectCard from "@/components/ProjectCard";
 import SkillBar from "@/components/SkillBar";
 import CommandInput from "@/components/CommandInput";
+import HackerOverlay from "@/components/HackerOverlay";
+import StatusBar from "@/components/StatusBar";
+import { useGithubRepos } from "@/hooks/useGithubRepos";
+
+const LANG_TO_TECH: Record<string, string[]> = {
+  TypeScript: ["TypeScript", "Web"],
+  JavaScript: ["JavaScript", "Web"],
+  Python: ["Python"],
+  Dart: ["Dart", "Flutter"],
+  HTML: ["HTML", "Web"],
+  CSS: ["CSS", "Web"],
+};
 
 const Index = () => {
   const aboutRef = useRef<HTMLDivElement>(null);
   const projectsRef = useRef<HTMLDivElement>(null);
   const skillsRef = useRef<HTMLDivElement>(null);
   const contactRef = useRef<HTMLDivElement>(null);
+
+  const { data: repos, isLoading: reposLoading } = useGithubRepos();
 
   const scrollTo = useCallback((section: string) => {
     const refs: Record<string, React.RefObject<HTMLDivElement>> = {
@@ -31,25 +45,28 @@ const Index = () => {
   }, [scrollTo]);
 
   return (
-    <div className="min-h-screen bg-terminal-bg scanline">
-      <div className="max-w-3xl mx-auto px-4 py-6 md:py-10">
-        {/* Terminal Window */}
-        <div className="rounded-xl border border-border overflow-hidden terminal-box-glow">
+    <div className="min-h-screen bg-terminal-bg scanline relative">
+      <HackerOverlay />
+
+      <div className="relative z-10 flex flex-col min-h-screen">
+        {/* Terminal Window — full screen */}
+        <div className="flex-1 flex flex-col border-x border-border terminal-box-glow">
           <TerminalTitleBar />
 
-          <div className="bg-terminal-bg p-4 md:p-6 space-y-1">
+          <div className="flex-1 bg-terminal-bg/80 backdrop-blur-sm p-4 md:p-8 lg:px-16 space-y-1 overflow-y-auto pb-12">
             {/* Welcome / Hero */}
             <motion.div
               initial={{ opacity: 0 }}
               animate={{ opacity: 1 }}
               transition={{ duration: 0.5 }}
-              className="mb-6"
+              className="mb-8 max-w-3xl"
             >
               <div className="flex items-center gap-2 mb-4">
                 <Terminal className="w-5 h-5 text-primary" />
                 <span className="text-primary font-bold text-lg terminal-glow">portfolio.sh</span>
+                <span className="text-muted-foreground text-[10px] ml-2 opacity-50">PID 1337 · TTY pts/0</span>
               </div>
-              <div className="text-foreground text-xl md:text-2xl font-bold mb-1">
+              <div className="text-foreground text-xl md:text-3xl font-bold mb-1">
                 <TypingText text="Hey, I'm Rohan Chatterjee 👋" speed={50} />
               </div>
               <p className="text-terminal-output text-sm mt-2">
@@ -75,7 +92,7 @@ const Index = () => {
             </motion.div>
 
             {/* About */}
-            <div ref={aboutRef}>
+            <div ref={aboutRef} className="max-w-3xl">
               <TerminalBlock command="cat about.md" delay={0.6}>
                 <p className="text-terminal-output leading-relaxed">
                   I'm a passionate developer with a love for building things from the ground up.
@@ -86,47 +103,40 @@ const Index = () => {
               </TerminalBlock>
             </div>
 
-            {/* Projects */}
-            <div ref={projectsRef}>
+            {/* Projects — dynamically fetched */}
+            <div ref={projectsRef} className="max-w-3xl">
               <TerminalBlock command="ls ~/projects --pinned" prompt="~/projects" delay={1.0}>
-                <div className="grid gap-3 md:grid-cols-2 mt-1">
-                  <ProjectCard
-                    name="k1000-Main"
-                    description="Full scale rollback & implementation of an Experimental & Conceptual Design website for K1000 — KIIT University's R&D organisation."
-                    tech={["TypeScript", "Web", "Design"]}
-                    url="https://github.com/InsaneCoder789/k1000-Main"
-                    delay={1.2}
-                  />
-                  <ProjectCard
-                    name="Trilingo"
-                    description="Your ultimate travel companion for seamless adventures worldwide."
-                    tech={["Dart", "Flutter", "Mobile"]}
-                    stars={3}
-                    url="https://github.com/InsaneCoder789/Trilingo"
-                    delay={1.4}
-                  />
-                  <ProjectCard
-                    name="Student-Database-Manager"
-                    description="A Database Manager using Modded Tkinter GUI and MySQL for student records."
-                    tech={["Python", "Tkinter", "MySQL"]}
-                    stars={2}
-                    url="https://github.com/InsaneCoder789/Student-Database-Manager"
-                    delay={1.6}
-                  />
-                  <ProjectCard
-                    name="Millionaire"
-                    description="Kaun Banega Crorepati — the classic quiz game built in Python."
-                    tech={["Python", "Game", "CLI"]}
-                    stars={1}
-                    url="https://github.com/InsaneCoder789/Millionaire"
-                    delay={1.8}
-                  />
-                </div>
+                {reposLoading ? (
+                  <div className="flex items-center gap-2 text-muted-foreground text-sm py-4">
+                    <Loader2 className="w-4 h-4 animate-spin" />
+                    <span>Fetching repos from github.com/InsaneCoder789...</span>
+                  </div>
+                ) : (
+                  <div className="grid gap-3 md:grid-cols-2 mt-1">
+                    {repos?.map((repo, i) => (
+                      <ProjectCard
+                        key={repo.name}
+                        name={repo.name}
+                        description={repo.description || "No description provided."}
+                        tech={
+                          repo.topics?.length
+                            ? repo.topics.slice(0, 3)
+                            : repo.language
+                              ? LANG_TO_TECH[repo.language] || [repo.language]
+                              : ["Code"]
+                        }
+                        stars={repo.stargazers_count || undefined}
+                        url={repo.html_url}
+                        delay={1.2 + i * 0.15}
+                      />
+                    ))}
+                  </div>
+                )}
               </TerminalBlock>
             </div>
 
             {/* Skills */}
-            <div ref={skillsRef}>
+            <div ref={skillsRef} className="max-w-3xl">
               <TerminalBlock command="neofetch --skills" delay={2.0}>
                 <div className="flex flex-col md:flex-row gap-6 mt-1">
                   <div className="space-y-2 flex-1">
@@ -154,7 +164,7 @@ const Index = () => {
             </div>
 
             {/* Contact */}
-            <div ref={contactRef}>
+            <div ref={contactRef} className="max-w-3xl">
               <TerminalBlock command="echo $CONTACT_INFO" delay={2.8}>
                 <div className="space-y-1.5 text-sm">
                   <div className="flex items-center gap-2">
@@ -177,19 +187,23 @@ const Index = () => {
             </div>
 
             {/* Interactive Command Input */}
-            <CommandInput onCommand={handleCommand} />
+            <div className="max-w-3xl">
+              <CommandInput onCommand={handleCommand} />
+            </div>
 
             {/* Footer */}
             <motion.div
               initial={{ opacity: 0 }}
               animate={{ opacity: 1 }}
               transition={{ delay: 3.2 }}
-              className="text-center text-muted-foreground text-[10px] pt-4 pb-2"
+              className="text-center text-muted-foreground text-[10px] pt-4 pb-8 max-w-3xl"
             >
               built with ❤️ and too much caffeine · © {new Date().getFullYear()} Rohan Chatterjee
             </motion.div>
           </div>
         </div>
+
+        <StatusBar />
       </div>
     </div>
   );
