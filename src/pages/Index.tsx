@@ -104,15 +104,15 @@ const Index = () => {
             </div>
 
             {/* Projects — dynamically fetched */}
-            <div ref={projectsRef} className="max-w-3xl">
-              <TerminalBlock command="ls ~/projects --pinned" prompt="~/projects" delay={1.0}>
+            <div ref={projectsRef} className="w-full">
+              <TerminalBlock command="ls ~/projects --all --recent" prompt="~/projects" delay={1.0}>
                 {reposLoading ? (
                   <div className="flex items-center gap-2 text-muted-foreground text-sm py-4">
                     <Loader2 className="w-4 h-4 animate-spin" />
                     <span>Fetching repos from github.com/InsaneCoder789...</span>
                   </div>
                 ) : (
-                  <div className="grid gap-3 md:grid-cols-2 mt-1">
+                  <div className="grid gap-3 grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 mt-1">
                     {repos?.map((repo, i) => (
                       <ProjectCard
                         key={repo.name}
@@ -127,7 +127,7 @@ const Index = () => {
                         }
                         stars={repo.stargazers_count || undefined}
                         url={repo.html_url}
-                        delay={1.2 + i * 0.15}
+                        delay={1.2 + i * 0.1}
                       />
                     ))}
                   </div>

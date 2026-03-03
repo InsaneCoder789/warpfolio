@@ -22,7 +22,7 @@ const fetchRepos = async (): Promise<GithubRepo[]> => {
   return repos
     .filter((r) => !r.fork)
     .sort((a, b) => b.stargazers_count - a.stargazers_count)
-    .slice(0, 6);
+    .slice(0, 12);
 };
 
 export const useGithubRepos = () => {
