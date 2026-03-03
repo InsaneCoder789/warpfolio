@@ -1,73 +1,163 @@
-# Welcome to your Lovable project
+# 🚀 WarpFolio
 
-## Project info
+> A WARP-drive inspired console portfolio built for developers who don’t scroll — they execute.
 
-**URL**: https://lovable.dev/projects/REPLACE_WITH_PROJECT_ID
+---
 
-## How can I edit this code?
+## 👨‍💻 Author
 
-There are several ways of editing your application.
+**InsaneCoder789**
 
-**Use Lovable**
+Engineering Mind • Terminal Native • Builder
 
-Simply visit the [Lovable Project](https://lovable.dev/projects/REPLACE_WITH_PROJECT_ID) and start prompting.
+---
 
-Changes made via Lovable will be committed automatically to this repo.
+## 🌌 About WarpFolio
 
-**Use your preferred IDE**
+WarpFolio is a futuristic, terminal-style developer portfolio designed to simulate a real command-line environment.
 
-If you want to work locally using your own IDE, you can clone this repo and push changes. Pushed changes will also be reflected in Lovable.
+Instead of traditional scrolling sections and navigation menus, users interact through commands — just like in a real system console.
 
-The only requirement is having Node.js & npm installed - [install with nvm](https://github.com/nvm-sh/nvm#installing-and-updating)
+Minimal. Fast. Immersive. Developer-first.
 
-Follow these steps:
+---
 
-```sh
-# Step 1: Clone the repository using the project's Git URL.
-git clone <YOUR_GIT_URL>
+## ⚡ Features
 
-# Step 2: Navigate to the project directory.
-cd <YOUR_PROJECT_NAME>
+- 🖥️ Terminal-style UI
+- ⌨️ Command-based navigation
+- 🧠 Smart command parsing
+- ⚡ Instant response rendering
+- 🌑 Dark WARP-inspired aesthetic
+- 🎨 Clean and responsive layout
+- 🔥 Immersive developer experience
 
-# Step 3: Install the necessary dependencies.
-npm i
+---
 
-# Step 4: Start the development server with auto-reloading and an instant preview.
+## 🛠 Tech Stack
+
+- ⚡ Vite
+- ⚛ React
+- 🟦 TypeScript
+- 🎨 Tailwind CSS
+- 🧩 shadcn/ui
+
+---
+
+## 📂 Project Structure
+
+```bash
+warpfolio/
+│
+├── public/
+├── src/
+│   ├── components/
+│   ├── pages/
+│   ├── hooks/
+│   ├── lib/
+│   └── main.tsx
+│
+├── index.html
+├── package.json
+├── tsconfig.json
+└── vite.config.ts
+```
+
+---
+
+## 💻 Getting Started
+
+### Prerequisites
+
+- Node.js v18 or higher
+- npm or yarn
+
+---
+
+## 🔧 Installation
+
+### 1️⃣ Clone the Repository
+
+```bash
+git clone https://github.com/InsaneCoder789/warpfolio.git
+```
+
+### 2️⃣ Navigate into the Project
+
+```bash
+cd warpfolio
+```
+
+### 3️⃣ Install Dependencies
+
+```bash
+npm install
+```
+
+### 4️⃣ Start Development Server
+
+```bash
 npm run dev
 ```
 
-**Edit a file directly in GitHub**
+The app will launch with hot reload enabled.
 
-- Navigate to the desired file(s).
-- Click the "Edit" button (pencil icon) at the top right of the file view.
-- Make your changes and commit the changes.
+---
 
-**Use GitHub Codespaces**
+## 🚀 Build for Production
 
-- Navigate to the main page of your repository.
-- Click on the "Code" button (green button) near the top right.
-- Select the "Codespaces" tab.
-- Click on "New codespace" to launch a new Codespace environment.
-- Edit files directly within the Codespace and commit and push your changes once you're done.
+```bash
+npm run build
+```
 
-## What technologies are used for this project?
+To preview the production build:
 
-This project is built with:
+```bash
+npm run preview
+```
 
-- Vite
-- TypeScript
-- React
-- shadcn-ui
-- Tailwind CSS
+---
 
-## How can I deploy this project?
+## 🧠 Example Commands
 
-Simply open [Lovable](https://lovable.dev/projects/REPLACE_WITH_PROJECT_ID) and click on Share -> Publish.
+```
+help        → Show available commands
+about       → About InsaneCoder789
+projects    → View projects
+skills      → Technical skills
+contact     → Contact information
+clear       → Clear terminal
+```
 
-## Can I connect a custom domain to my Lovable project?
+*(Command list may vary depending on implementation.)*
 
-Yes, you can!
+---
 
-To connect a domain, navigate to Project > Settings > Domains and click Connect Domain.
+## 🎯 Philosophy
 
-Read more here: [Setting up a custom domain](https://docs.lovable.dev/features/custom-domain#custom-domain)
+> A developer portfolio should feel like a developer environment.
+
+No bloated UI.  
+No unnecessary animations.  
+No distractions.  
+
+Just interaction, clarity, and personality.
+
+---
+
+## 🔮 Future Enhancements
+
+- Command history navigation (↑ / ↓ keys)
+- ASCII startup animation
+- Warp jump transition effects
+- Sound effects toggle
+- Multiple theme modes (Classic Green / Cyberpunk / Deep Space)
+- AI interactive terminal mode
+
+---
+
+## 📜 License
+
+MIT License  
+
+Fork it. Modify it. Warp it.
