@@ -50,7 +50,7 @@ const Index = () => {
 
       <div className="relative z-10 flex flex-col min-h-screen">
         {/* Terminal Window — full screen */}
-        <div className="flex-1 flex flex-col border-x border-border terminal-box-glow">
+        <div className="flex-1 flex flex-col max-w-5xl mx-auto w-full border-x border-border terminal-box-glow">
           <TerminalTitleBar />
 
           <div className="flex-1 bg-terminal-bg/80 backdrop-blur-sm p-4 md:p-8 lg:px-16 space-y-1 overflow-y-auto pb-12">
@@ -112,7 +112,7 @@ const Index = () => {
                     <span>Fetching repos from github.com/InsaneCoder789...</span>
                   </div>
                 ) : (
-                  <div className="grid gap-3 grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 mt-1">
+                  <div className="grid gap-3 grid-cols-1 sm:grid-cols-2 mt-1">
                     {repos?.map((repo, i) => (
                       <ProjectCard
                         key={repo.name}
