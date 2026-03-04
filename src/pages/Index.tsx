@@ -50,7 +50,7 @@ const Index = () => {
 
       <div className="relative z-10 flex flex-col min-h-screen">
         {/* Terminal Window — full screen */}
-        <div className="flex-1 flex flex-col border-x border-border terminal-box-glow">
+        <div className="flex-1 flex flex-col max-w-5xl mx-auto w-full border-x border-border terminal-box-glow">
           <TerminalTitleBar />
 
           <div className="flex-1 bg-terminal-bg/80 backdrop-blur-sm p-4 md:p-8 lg:px-16 space-y-1 overflow-y-auto pb-12">
