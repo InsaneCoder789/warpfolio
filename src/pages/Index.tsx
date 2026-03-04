@@ -112,7 +112,7 @@ const Index = () => {
                     <span>Fetching repos from github.com/InsaneCoder789...</span>
                   </div>
                 ) : (
-                  <div className="grid gap-3 grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 mt-1">
+                  <div className="grid gap-3 grid-cols-1 sm:grid-cols-2 mt-1">
                     {repos?.map((repo, i) => (
                       <ProjectCard
                         key={repo.name}

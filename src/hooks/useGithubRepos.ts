@@ -11,6 +11,7 @@ export interface GithubRepo {
 }
 
 const GITHUB_USERNAME = "InsaneCoder789";
+const PINNED_REPOS = ["k1000-Main", "Trilingo", "Lakshman-Rekha", "Student-Database-Manager"];
 
 const fetchRepos = async (): Promise<GithubRepo[]> => {
   const res = await fetch(
@@ -18,11 +19,7 @@ const fetchRepos = async (): Promise<GithubRepo[]> => {
   );
   if (!res.ok) throw new Error("Failed to fetch repos");
   const repos: GithubRepo[] = await res.json();
-  // Filter out forks, sort by stars then recent
-  return repos
-    .filter((r) => !r.fork)
-    .sort((a, b) => b.stargazers_count - a.stargazers_count)
-    .slice(0, 12);
+  return repos.filter((r) => PINNED_REPOS.includes(r.name));
 };
 
 export const useGithubRepos = () => {
