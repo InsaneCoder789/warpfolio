@@ -4,7 +4,7 @@ import path from "path";
 import { componentTagger } from "lovable-tagger";
 
 export default defineConfig(({ mode }) => ({
-  base: "/warpfolio/", // 👈 THIS LINE FIXES GITHUB PAGES
+  base: "./",
 
   server: {
     host: "::",
