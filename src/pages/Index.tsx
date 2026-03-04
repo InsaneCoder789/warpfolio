@@ -50,7 +50,7 @@ const Index = () => {
 
       <div className="relative z-10 flex flex-col min-h-screen">
         {/* Terminal Window — full screen */}
-        <div className="flex-1 flex flex-col max-w-5xl mx-auto w-full border-x border-border terminal-box-glow">
+        <div className="flex-1 flex flex-col max-w-6xl mx-auto w-full border-x border-border terminal-box-glow">
           <TerminalTitleBar />
 
           <div className="flex-1 bg-terminal-bg/80 backdrop-blur-sm p-4 md:p-8 lg:px-16 space-y-1 overflow-y-auto pb-12">
@@ -59,7 +59,7 @@ const Index = () => {
               initial={{ opacity: 0 }}
               animate={{ opacity: 1 }}
               transition={{ duration: 0.5 }}
-              className="mb-8 max-w-3xl"
+              className="mb-8"
             >
               <div className="flex items-center gap-2 mb-4">
                 <Terminal className="w-5 h-5 text-primary" />
@@ -92,7 +92,7 @@ const Index = () => {
             </motion.div>
 
             {/* About */}
-            <div ref={aboutRef} className="max-w-3xl">
+            <div ref={aboutRef}>
               <TerminalBlock command="cat about.md" delay={0.6}>
                 <p className="text-terminal-output leading-relaxed">
                   I'm a passionate developer with a love for building things from the ground up.
@@ -136,7 +136,7 @@ const Index = () => {
             </div>
 
             {/* Skills */}
-            <div ref={skillsRef} className="max-w-3xl">
+            <div ref={skillsRef}>
               <TerminalBlock command="neofetch --skills" delay={2.0}>
                 <div className="flex flex-col md:flex-row gap-6 mt-1 overflow-hidden">
                   <div className="space-y-2 flex-1">
@@ -164,7 +164,7 @@ const Index = () => {
             </div>
 
             {/* Contact */}
-            <div ref={contactRef} className="max-w-3xl">
+            <div ref={contactRef}>
               <TerminalBlock command="echo $CONTACT_INFO" delay={2.8}>
                 <div className="space-y-1.5 text-sm">
                   <div className="flex items-center gap-2">
@@ -187,7 +187,7 @@ const Index = () => {
             </div>
 
             {/* Interactive Command Input */}
-            <div className="max-w-3xl">
+            <div>
               <CommandInput onCommand={handleCommand} />
             </div>
 
@@ -196,7 +196,7 @@ const Index = () => {
               initial={{ opacity: 0 }}
               animate={{ opacity: 1 }}
               transition={{ delay: 3.2 }}
-              className="text-center text-muted-foreground text-[10px] pt-4 pb-8 max-w-3xl"
+              className="text-center text-muted-foreground text-[10px] pt-4 pb-8"
             >
               built with ❤️ and too much caffeine · © {new Date().getFullYear()} Rohan Chatterjee
             </motion.div>
