@@ -94,7 +94,7 @@ const Index = () => {
         <div className="flex-1 flex flex-col w-full border-x border-border terminal-box-glow">
           <TerminalTitleBar />
 
-          <div className="flex-1 bg-terminal-bg/40 p-4 md:p-8 lg:px-16 space-y-1 overflow-y-auto pb-12">
+          <div className="flex-1 bg-terminal-bg/40 p-3 sm:p-4 md:p-8 lg:px-16 space-y-1 overflow-y-auto pb-16">
 
             {/* Quick Navigation + Command Bar */}
             <motion.div
