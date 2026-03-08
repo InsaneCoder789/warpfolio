@@ -1,6 +1,6 @@
 import { useRef, useCallback, useEffect, useState } from "react";
 import { motion } from "framer-motion";
-import { Github, MapPin, Code2, Terminal, Instagram, Twitter, Loader2, Skull } from "lucide-react";
+import { Github, MapPin, Code2, Terminal, Instagram, Twitter, Loader2, Skull, GraduationCap, Briefcase, Shield, Smartphone } from "lucide-react";
 import TerminalTitleBar from "@/components/TerminalTitleBar";
 import TerminalBlock from "@/components/TerminalBlock";
 import TypingText from "@/components/TypingText";
@@ -11,6 +11,7 @@ import SurveillanceWidget from "@/components/SurveillanceWidget";
 import StatusBar from "@/components/StatusBar";
 import MatrixRain from "@/components/MatrixRain";
 import KaliBootScreen from "@/components/KaliBootScreen";
+import GithubContributions from "@/components/GithubContributions";
 import { useGithubRepos } from "@/hooks/useGithubRepos";
 
 const LANG_TO_TECH: Record<string, string[]> = {
@@ -20,6 +21,8 @@ const LANG_TO_TECH: Record<string, string[]> = {
   Dart: ["Dart", "Flutter"],
   HTML: ["HTML", "Web"],
   CSS: ["CSS", "Web"],
+  Kotlin: ["Kotlin", "Android"],
+  Tcl: ["Tkinter", "Python"],
 };
 
 const KALI_DRAGON = `    ⠀⠀⠀⠀⠀⠀⣠⣴⣶⣿⣿⣷⣶⣄⣀⣀⠀⠀⠀⠀⠀⠀
@@ -39,8 +42,14 @@ const Index = () => {
   const { data: repos, isLoading: reposLoading } = useGithubRepos();
 
   useEffect(() => {
-    window.scrollTo(0, 0);
+    window.scrollTo({ top: 0, left: 0, behavior: "instant" });
   }, []);
+
+  useEffect(() => {
+    if (booted) {
+      window.scrollTo({ top: 0, left: 0, behavior: "instant" });
+    }
+  }, [booted]);
 
   const scrollTo = useCallback((section: string) => {
     const refs: Record<string, React.RefObject<HTMLDivElement>> = {
@@ -112,6 +121,9 @@ const Index = () => {
                     <a href="https://twitter.com/RohanCh81145388" target="_blank" rel="noopener noreferrer" className="text-muted-foreground hover:text-primary transition-colors">
                       <Twitter className="w-4 h-4" />
                     </a>
+                    <a href="https://www.linkedin.com/in/rochiee24/" target="_blank" rel="noopener noreferrer" className="text-muted-foreground hover:text-primary transition-colors text-xs font-semibold">
+                      in
+                    </a>
                     <span className="text-muted-foreground text-xs flex items-center gap-1">
                       <MapPin className="w-3 h-3" /> Working from home 🏠
                     </span>
@@ -123,12 +135,32 @@ const Index = () => {
             {/* About */}
             <div ref={aboutRef}>
               <TerminalBlock command="cat about.md" delay={0.6}>
-                <p className="text-terminal-output leading-relaxed">
-                  I'm a passionate developer with a love for building things from the ground up.
-                  From full-scale web applications to fun Python projects, I explore tech at its roots.
-                  Currently focused on TypeScript, Dart/Flutter, and Python — always learning,
-                  always building. I believe great software comes from understanding fundamentals deeply.
-                </p>
+                <div className="text-terminal-output leading-relaxed space-y-3">
+                  <p>
+                    I'm a passionate developer with a love for building things from the ground up.
+                    From full-scale web applications to fun Python projects, I explore tech at its roots.
+                    Currently focused on TypeScript, Dart/Flutter, Kotlin, and Python — always learning,
+                    always building.
+                  </p>
+                  <div className="grid grid-cols-1 sm:grid-cols-2 gap-2 mt-3">
+                    <div className="flex items-start gap-2 text-xs">
+                      <GraduationCap className="w-3.5 h-3.5 text-primary mt-0.5 shrink-0" />
+                      <span><span className="text-foreground font-semibold">KIIT University</span> — CS/Tech student, member of K1000 R&D organisation</span>
+                    </div>
+                    <div className="flex items-start gap-2 text-xs">
+                      <Briefcase className="w-3.5 h-3.5 text-primary mt-0.5 shrink-0" />
+                      <span><span className="text-foreground font-semibold">Full-stack developer</span> — Web apps, mobile apps, database systems</span>
+                    </div>
+                    <div className="flex items-start gap-2 text-xs">
+                      <Shield className="w-3.5 h-3.5 text-primary mt-0.5 shrink-0" />
+                      <span><span className="text-foreground font-semibold">Cybersecurity enthusiast</span> — Built Lakshman Rekha anti-scam app</span>
+                    </div>
+                    <div className="flex items-start gap-2 text-xs">
+                      <Smartphone className="w-3.5 h-3.5 text-primary mt-0.5 shrink-0" />
+                      <span><span className="text-foreground font-semibold">Mobile dev</span> — Flutter/Dart & Kotlin Android apps</span>
+                    </div>
+                  </div>
+                </div>
               </TerminalBlock>
             </div>
 
@@ -164,6 +196,11 @@ const Index = () => {
               </TerminalBlock>
             </div>
 
+            {/* GitHub Contributions */}
+            <TerminalBlock command="gh contributions --graph" delay={1.6}>
+              <GithubContributions delay={1.8} />
+            </TerminalBlock>
+
             {/* Skills */}
             <div ref={skillsRef}>
               <TerminalBlock command="neofetch --skills" delay={2.0}>
@@ -175,6 +212,7 @@ const Index = () => {
                     <SkillBar name="Python" level={88} delay={2.2} />
                     <SkillBar name="TypeScript" level={82} delay={2.3} />
                     <SkillBar name="Dart/Flutter" level={78} delay={2.4} />
+                    <SkillBar name="Kotlin" level={76} delay={2.45} />
                     <SkillBar name="JavaScript" level={85} delay={2.5} />
                     <SkillBar name="React" level={75} delay={2.6} />
                   </div>
@@ -187,6 +225,7 @@ const Index = () => {
                     <SkillBar name="Linux" level={72} delay={2.5} />
                     <SkillBar name="Tkinter" level={70} delay={2.6} />
                     <SkillBar name="Firebase" level={68} delay={2.7} />
+                    <SkillBar name="Android Dev" level={74} delay={2.75} />
                   </div>
                 </div>
               </TerminalBlock>
@@ -207,6 +246,10 @@ const Index = () => {
                   <div className="flex items-center gap-2">
                     <Twitter className="w-3.5 h-3.5 text-primary" />
                     <a href="https://twitter.com/RohanCh81145388" target="_blank" rel="noopener noreferrer" className="text-terminal-link hover:underline">@RohanCh81145388</a>
+                  </div>
+                  <div className="flex items-center gap-2">
+                    <span className="text-primary font-bold text-xs w-3.5 text-center">in</span>
+                    <a href="https://www.linkedin.com/in/rochiee24/" target="_blank" rel="noopener noreferrer" className="text-terminal-link hover:underline">linkedin.com/in/rochiee24</a>
                   </div>
                   <p className="text-terminal-output text-xs mt-2">
                     Always open for interesting projects and collaborations. Feel free to reach out!
