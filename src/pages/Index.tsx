@@ -11,6 +11,7 @@ import StatusBar from "@/components/StatusBar";
 import CyberGrid from "@/components/CyberGrid";
 import KaliBootScreen from "@/components/KaliBootScreen";
 import GithubContributions from "@/components/GithubContributions";
+import TechLogosSection from "@/components/TechLogosSection";
 import { useGithubRepos } from "@/hooks/useGithubRepos";
 
 const LANG_TO_TECH: Record<string, string[]> = {
