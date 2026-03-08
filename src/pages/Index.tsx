@@ -1,4 +1,4 @@
-import { useRef, useCallback } from "react";
+import { useRef, useCallback, useEffect } from "react";
 import { motion } from "framer-motion";
 import { Github, MapPin, Code2, Terminal, Instagram, Twitter, Loader2 } from "lucide-react";
 import TerminalTitleBar from "@/components/TerminalTitleBar";
