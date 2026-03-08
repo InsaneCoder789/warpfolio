@@ -11,6 +11,7 @@ import StatusBar from "@/components/StatusBar";
 import CyberGrid from "@/components/CyberGrid";
 import KaliBootScreen from "@/components/KaliBootScreen";
 import GithubContributions from "@/components/GithubContributions";
+import TechLogosSection from "@/components/TechLogosSection";
 import { useGithubRepos } from "@/hooks/useGithubRepos";
 
 const LANG_TO_TECH: Record<string, string[]> = {
@@ -187,11 +188,11 @@ const Index = () => {
                     </div>
                     <div className="flex items-start gap-2 text-xs">
                       <Briefcase className="w-3.5 h-3.5 text-primary mt-0.5 shrink-0" />
-                      <span><span className="text-foreground font-semibold">K1000 KIIT</span> — Android Developer (Jan 2026 – Present)</span>
+                      <span><span className="text-foreground font-semibold">GFG KIIT</span> — Android Developer (May 2025 – Present)</span>
                     </div>
                     <div className="flex items-start gap-2 text-xs">
                       <Briefcase className="w-3.5 h-3.5 text-primary mt-0.5 shrink-0" />
-                      <span><span className="text-foreground font-semibold">GFG KIIT</span> — Android Developer (May 2025 – Present)</span>
+                      <span><span className="text-foreground font-semibold">K1000 KIIT</span> — Android Developer (Jan 2026 – Present)</span>
                     </div>
                     <div className="flex items-start gap-2 text-xs">
                       <Shield className="w-3.5 h-3.5 text-primary mt-0.5 shrink-0" />
@@ -272,6 +273,11 @@ const Index = () => {
                 )}
               </TerminalBlock>
             </div>
+
+            {/* Tech Logos */}
+            <TerminalBlock command="dpkg --list-installed-tech" delay={1.3}>
+              <TechLogosSection delay={1.4} />
+            </TerminalBlock>
 
             {/* GitHub Contributions */}
             <TerminalBlock command="gh contributions --graph" delay={1.6}>
