@@ -50,7 +50,7 @@ const Index = () => {
 
   return (
     <div className="min-h-screen bg-terminal-bg scanline relative">
-      
+      <SurveillanceWidget />
 
       <div className="relative z-10 flex flex-col min-h-screen">
         {/* Terminal Window — full screen */}
