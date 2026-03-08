@@ -140,7 +140,7 @@ const CyberGrid = () => {
           const ddy = p.y - p2.y;
           const dist = Math.sqrt(ddx * ddx + ddy * ddy);
           if (dist < maxDist) {
-            const lineOpacity = (1 - dist / maxDist) * 0.2 * (0.4 + pulse.value * 0.6);
+            const lineOpacity = (1 - dist / maxDist) * 0.35 * (0.4 + pulse.value * 0.6);
             ctx.beginPath();
             ctx.moveTo(p.x, p.y);
             ctx.lineTo(p2.x, p2.y);
