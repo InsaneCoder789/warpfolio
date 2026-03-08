@@ -7,7 +7,7 @@ import TypingText from "@/components/TypingText";
 import ProjectCard from "@/components/ProjectCard";
 import SkillBar from "@/components/SkillBar";
 import CommandInput from "@/components/CommandInput";
-
+import SurveillanceWidget from "@/components/SurveillanceWidget";
 import StatusBar from "@/components/StatusBar";
 import { useGithubRepos } from "@/hooks/useGithubRepos";
 
