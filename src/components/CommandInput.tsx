@@ -27,14 +27,16 @@ const CommandInput = ({ onCommand }: CommandInputProps) => {
 
   const handleKeyDown = (e: KeyboardEvent<HTMLInputElement>) => {
     if (e.key === "Enter" && input.trim()) {
-      const cmd = input.trim().toLowerCase();
-      if (cmd === "clear") {
+      const cmd = input.trim().toLowerCase().slice(0, 50);
+      // Only allow known commands — prevent injection
+      const safeCmd = cmd.replace(/[^a-z0-9\-_ ]/g, "");
+      if (safeCmd === "clear") {
         setHistory([]);
       } else {
-        const output = COMMANDS[cmd] || `bash: ${cmd}: command not found. Type 'help' for available commands.`;
-        setHistory((h) => [...h, { cmd: input.trim(), output }]);
+        const output = COMMANDS[safeCmd] || `bash: ${safeCmd}: command not found. Type 'help' for available commands.`;
+        setHistory((h) => [...h.slice(-20), { cmd: safeCmd, output }]);
       }
-      onCommand(cmd);
+      onCommand(safeCmd);
       setInput("");
     }
   };
