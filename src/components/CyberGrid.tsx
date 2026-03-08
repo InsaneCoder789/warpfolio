@@ -28,8 +28,8 @@ const CyberGrid = () => {
         y: Math.random() * canvas.height,
         vx: (Math.random() - 0.5) * 0.4,
         vy: (Math.random() - 0.5) * 0.4,
-        size: Math.random() * 2.5 + 1,
-        opacity: Math.random() * 0.5 + 0.3,
+        size: Math.random() * 3 + 1.5,
+        opacity: Math.random() * 0.5 + 0.5,
       });
     }
 
@@ -44,7 +44,7 @@ const CyberGrid = () => {
         hexNodes.push({
           x: c * hexSize + offset,
           y: r * hexSize * 0.866,
-          baseOpacity: 0.06 + Math.random() * 0.04,
+          baseOpacity: 0.1 + Math.random() * 0.06,
         });
       }
     }
@@ -72,8 +72,8 @@ const CyberGrid = () => {
         const dx = node.x - mx;
         const dy = node.y - my;
         const dist = Math.sqrt(dx * dx + dy * dy);
-        const proximity = dist < 250 ? (1 - dist / 250) * 0.2 : 0;
-        const waveEffect = Math.sin(node.x * 0.012 + node.y * 0.012 + pulse.wave) * 0.04;
+        const proximity = dist < 250 ? (1 - dist / 250) * 0.35 : 0;
+        const waveEffect = Math.sin(node.x * 0.012 + node.y * 0.012 + pulse.wave) * 0.06;
         const opacity = node.baseOpacity + proximity + waveEffect;
 
         // Hex shape
@@ -87,14 +87,14 @@ const CyberGrid = () => {
         }
         ctx.closePath();
         ctx.strokeStyle = `hsla(142, 70%, 45%, ${opacity})`;
-        ctx.lineWidth = 0.7;
+        ctx.lineWidth = 1;
         ctx.stroke();
 
         // Glow node on proximity
         if (dist < 200) {
           ctx.beginPath();
-          ctx.arc(node.x, node.y, 1.5 + proximity * 3, 0, Math.PI * 2);
-          ctx.fillStyle = `hsla(142, 70%, 55%, ${proximity * 1.5})`;
+          ctx.arc(node.x, node.y, 2 + proximity * 4, 0, Math.PI * 2);
+          ctx.fillStyle = `hsla(142, 70%, 60%, ${proximity * 2})`;
           ctx.fill();
         }
       }
@@ -140,7 +140,7 @@ const CyberGrid = () => {
           const ddy = p.y - p2.y;
           const dist = Math.sqrt(ddx * ddx + ddy * ddy);
           if (dist < maxDist) {
-            const lineOpacity = (1 - dist / maxDist) * 0.2 * (0.4 + pulse.value * 0.6);
+            const lineOpacity = (1 - dist / maxDist) * 0.35 * (0.4 + pulse.value * 0.6);
             ctx.beginPath();
             ctx.moveTo(p.x, p.y);
             ctx.lineTo(p2.x, p2.y);
@@ -151,14 +151,7 @@ const CyberGrid = () => {
         }
       }
 
-      // Scan line
-      const scanY = (time * 40) % canvas.height;
-      const scanGrad = ctx.createLinearGradient(0, scanY - 4, 0, scanY + 4);
-      scanGrad.addColorStop(0, "hsla(142, 70%, 50%, 0)");
-      scanGrad.addColorStop(0.5, "hsla(142, 70%, 50%, 0.06)");
-      scanGrad.addColorStop(1, "hsla(142, 70%, 50%, 0)");
-      ctx.fillStyle = scanGrad;
-      ctx.fillRect(0, scanY - 4, canvas.width, 8);
+      // (scan line removed)
 
       animFrameRef.current = requestAnimationFrame(draw);
     };
