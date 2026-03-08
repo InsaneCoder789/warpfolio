@@ -318,16 +318,16 @@ const Index = () => {
             <div ref={resumeRef}>
               <TerminalBlock command="cat ~/resume.pdf --preview" delay={2.4}>
                 <div className="space-y-3">
-                  <div className="flex items-center justify-between">
-                    <div className="flex items-center gap-2 text-sm">
-                      <FileText className="w-4 h-4 text-primary" />
-                      <span className="text-foreground font-semibold">Rohan_Chatterjee_Resume.pdf</span>
+                  <div className="flex flex-col sm:flex-row items-start sm:items-center justify-between gap-2">
+                    <div className="flex items-center gap-2 text-xs sm:text-sm">
+                      <FileText className="w-4 h-4 text-primary shrink-0" />
+                      <span className="text-foreground font-semibold truncate">Rohan_Chatterjee_Resume.pdf</span>
                       <span className="text-muted-foreground text-xs">(1 page)</span>
                     </div>
                     <a
                       href="/Rohan_Chatterjee_Resume.pdf"
                       download="Rohan_Chatterjee_Resume.pdf"
-                      className="flex items-center gap-1.5 px-3 py-1.5 rounded-md bg-primary/15 hover:bg-primary/25 text-primary text-xs font-medium border border-primary/30 hover:border-primary/50 transition-all"
+                      className="flex items-center gap-1.5 px-3 py-1.5 rounded-md bg-primary/15 hover:bg-primary/25 text-primary text-xs font-medium border border-primary/30 hover:border-primary/50 transition-all shrink-0"
                     >
                       <Download className="w-3.5 h-3.5" />
                       Download Resume
