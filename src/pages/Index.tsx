@@ -274,6 +274,11 @@ const Index = () => {
               </TerminalBlock>
             </div>
 
+            {/* Tech Logos */}
+            <TerminalBlock command="dpkg --list-installed-tech" delay={1.3}>
+              <TechLogosSection delay={1.4} />
+            </TerminalBlock>
+
             {/* GitHub Contributions */}
             <TerminalBlock command="gh contributions --graph" delay={1.6}>
               <GithubContributions delay={1.8} />
