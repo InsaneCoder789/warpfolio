@@ -11,7 +11,7 @@ export interface GithubRepo {
 }
 
 const GITHUB_USERNAME = "InsaneCoder789";
-const PINNED_REPOS = ["k1000-Main", "Trilingo", "Lakshman-Rekha", "Student-Database-Manager"];
+const PINNED_REPOS = ["K1000-Website", "k1000-Main", "Trilingo", "Lakshman-Rekha", "Student-Database-Manager"];
 
 const fetchRepos = async (): Promise<GithubRepo[]> => {
   const res = await fetch(
