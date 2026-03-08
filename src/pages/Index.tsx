@@ -84,7 +84,7 @@ const Index = () => {
   }, [scrollTo]);
 
   return (
-    <div className="min-h-screen bg-terminal-bg scanline relative">
+    <div className="min-h-screen bg-terminal-bg/70 scanline relative">
       {!booted && <KaliBootScreen onComplete={() => setBooted(true)} />}
       
       <CyberGrid />
@@ -93,7 +93,7 @@ const Index = () => {
         <div className="flex-1 flex flex-col w-full border-x border-border terminal-box-glow">
           <TerminalTitleBar />
 
-          <div className="flex-1 bg-terminal-bg/80 backdrop-blur-sm p-4 md:p-8 lg:px-16 space-y-1 overflow-y-auto pb-12">
+          <div className="flex-1 bg-terminal-bg/40 p-4 md:p-8 lg:px-16 space-y-1 overflow-y-auto pb-12">
 
             {/* Quick Navigation + Command Bar */}
             <motion.div

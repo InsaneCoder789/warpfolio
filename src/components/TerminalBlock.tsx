@@ -14,7 +14,7 @@ const TerminalBlock = ({ command, prompt = "~", children, delay = 0 }: TerminalB
       initial={{ opacity: 0, y: 12 }}
       animate={{ opacity: 1, y: 0 }}
       transition={{ duration: 0.4, delay }}
-      className="group rounded-lg bg-terminal-block border border-border hover:bg-terminal-block-hover hover:terminal-border-glow transition-all duration-200 mb-3"
+      className="group rounded-lg bg-terminal-block/70 backdrop-blur-sm border border-border hover:bg-terminal-block-hover/80 hover:terminal-border-glow transition-all duration-200 mb-3"
     >
       {/* Kali-style command header */}
       <div className="px-4 pt-3 pb-1">
