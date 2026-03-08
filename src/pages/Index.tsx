@@ -94,28 +94,28 @@ const Index = () => {
         <div className="flex-1 flex flex-col w-full border-x border-border terminal-box-glow">
           <TerminalTitleBar />
 
-          <div className="flex-1 bg-terminal-bg/40 p-4 md:p-8 lg:px-16 space-y-1 overflow-y-auto pb-12">
+          <div className="flex-1 bg-terminal-bg/40 p-3 sm:p-4 md:p-8 lg:px-16 space-y-1 overflow-y-auto pb-16">
 
             {/* Quick Navigation + Command Bar */}
             <motion.div
               initial={{ opacity: 0, y: -10 }}
               animate={{ opacity: booted ? 1 : 0, y: booted ? 0 : -10 }}
               transition={{ duration: 0.4, delay: 0.2 }}
-              className="flex flex-wrap items-center gap-2 mb-4 p-3 rounded-lg bg-terminal-block border border-border"
+              className="flex flex-wrap items-center gap-1.5 sm:gap-2 mb-4 p-2 sm:p-3 rounded-lg bg-terminal-block border border-border"
             >
-              <span className="text-terminal-prompt text-xs mr-1">$</span>
-              <span className="text-muted-foreground text-xs mr-2">quick-nav:</span>
+              <span className="text-terminal-prompt text-[10px] sm:text-xs mr-0.5 sm:mr-1">$</span>
+              <span className="text-muted-foreground text-[10px] sm:text-xs mr-1 sm:mr-2">quick-nav:</span>
               {QUICK_COMMANDS.map((cmd) => (
                 <button
                   key={cmd.label}
                   onClick={() => handleCommand(cmd.label)}
-                  className="text-[11px] px-2.5 py-1 rounded-sm bg-secondary hover:bg-primary/20 text-primary font-medium transition-colors border border-border hover:border-primary/40"
+                  className="text-[10px] sm:text-[11px] px-2 sm:px-2.5 py-0.5 sm:py-1 rounded-sm bg-secondary hover:bg-primary/20 text-primary font-medium transition-colors border border-border hover:border-primary/40"
                   title={cmd.desc}
                 >
                   {cmd.label}
                 </button>
               ))}
-              <span className="text-muted-foreground text-[10px] ml-auto">
+              <span className="text-muted-foreground text-[9px] sm:text-[10px] ml-auto hidden sm:inline">
                 type <span className="text-primary font-semibold">'help'</span> in terminal below for all commands
               </span>
             </motion.div>
@@ -137,7 +137,7 @@ const Index = () => {
                     <span className="text-primary font-bold text-lg terminal-glow">portfolio.sh</span>
                     <span className="text-muted-foreground text-[10px] ml-2 opacity-50">PID 1337 · TTY pts/0 · root</span>
                   </div>
-                  <div className="text-foreground text-xl md:text-3xl font-bold mb-1">
+                  <div className="text-foreground text-lg sm:text-xl md:text-3xl font-bold mb-1">
                     <TypingText text="Hey, I'm Rohan Chatterjee 👋" speed={50} />
                   </div>
                   <p className="text-terminal-output text-sm mt-2">
@@ -318,16 +318,16 @@ const Index = () => {
             <div ref={resumeRef}>
               <TerminalBlock command="cat ~/resume.pdf --preview" delay={2.4}>
                 <div className="space-y-3">
-                  <div className="flex items-center justify-between">
-                    <div className="flex items-center gap-2 text-sm">
-                      <FileText className="w-4 h-4 text-primary" />
-                      <span className="text-foreground font-semibold">Rohan_Chatterjee_Resume.pdf</span>
+                  <div className="flex flex-col sm:flex-row items-start sm:items-center justify-between gap-2">
+                    <div className="flex items-center gap-2 text-xs sm:text-sm">
+                      <FileText className="w-4 h-4 text-primary shrink-0" />
+                      <span className="text-foreground font-semibold truncate">Rohan_Chatterjee_Resume.pdf</span>
                       <span className="text-muted-foreground text-xs">(1 page)</span>
                     </div>
                     <a
                       href="/Rohan_Chatterjee_Resume.pdf"
                       download="Rohan_Chatterjee_Resume.pdf"
-                      className="flex items-center gap-1.5 px-3 py-1.5 rounded-md bg-primary/15 hover:bg-primary/25 text-primary text-xs font-medium border border-primary/30 hover:border-primary/50 transition-all"
+                      className="flex items-center gap-1.5 px-3 py-1.5 rounded-md bg-primary/15 hover:bg-primary/25 text-primary text-xs font-medium border border-primary/30 hover:border-primary/50 transition-all shrink-0"
                     >
                       <Download className="w-3.5 h-3.5" />
                       Download Resume

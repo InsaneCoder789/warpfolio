@@ -16,25 +16,25 @@ const StatusBar = () => {
   }, []);
 
   return (
-    <div className="fixed bottom-0 left-0 right-0 z-30 flex items-center justify-between px-4 py-1.5 bg-terminal-block/90 backdrop-blur-sm border-t border-border text-[10px] text-muted-foreground font-mono">
-      <div className="flex items-center gap-4">
+    <div className="fixed bottom-0 left-0 right-0 z-30 flex items-center justify-between px-2 sm:px-4 py-1.5 bg-terminal-block/90 backdrop-blur-sm border-t border-border text-[9px] sm:text-[10px] text-muted-foreground font-mono">
+      <div className="flex items-center gap-2 sm:gap-4">
         <span className="flex items-center gap-1 text-primary">
           <Skull className="w-3 h-3" /> KALI
         </span>
         <span className="flex items-center gap-1 text-terminal-success">
           <Shield className="w-3 h-3" /> ROOT
         </span>
-        <span className="flex items-center gap-1">
+        <span className="hidden sm:flex items-center gap-1">
           <Lock className="w-3 h-3 text-terminal-success" /> TLS 1.3
         </span>
-        <span className="flex items-center gap-1">
+        <span className="hidden sm:flex items-center gap-1">
           <Wifi className="w-3 h-3 text-primary" /> 10.0.2.15
         </span>
         <span className="flex items-center gap-1 hidden md:flex">
           <Activity className="w-3 h-3 text-terminal-warning" /> {packets.toLocaleString()} pkts
         </span>
       </div>
-      <div className="flex items-center gap-4">
+      <div className="flex items-center gap-2 sm:gap-4">
         <span className="flex items-center gap-1 hidden md:flex">
           <Cpu className="w-3 h-3" /> MEM {mem}%
         </span>
