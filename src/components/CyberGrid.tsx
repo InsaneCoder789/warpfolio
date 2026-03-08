@@ -44,7 +44,7 @@ const CyberGrid = () => {
         hexNodes.push({
           x: c * hexSize + offset,
           y: r * hexSize * 0.866,
-          baseOpacity: 0.06 + Math.random() * 0.04,
+          baseOpacity: 0.1 + Math.random() * 0.06,
         });
       }
     }
