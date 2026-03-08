@@ -95,7 +95,7 @@ const Index = () => {
 
           <div className="flex-1 bg-terminal-bg/80 backdrop-blur-sm p-4 md:p-8 lg:px-16 space-y-1 overflow-y-auto pb-12">
 
-            {/* Quick Navigation Bar */}
+            {/* Quick Navigation + Command Bar */}
             <motion.div
               initial={{ opacity: 0, y: -10 }}
               animate={{ opacity: booted ? 1 : 0, y: booted ? 0 : -10 }}
@@ -114,7 +114,9 @@ const Index = () => {
                   {cmd.label}
                 </button>
               ))}
-              <span className="text-muted-foreground text-[10px] ml-auto hidden sm:inline">type &apos;help&apos; below for all commands</span>
+              <span className="text-muted-foreground text-[10px] ml-auto">
+                type <span className="text-primary font-semibold">'help'</span> in terminal below for all commands
+              </span>
             </motion.div>
 
             {/* Welcome / Hero */}
