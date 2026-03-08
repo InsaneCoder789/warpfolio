@@ -137,7 +137,7 @@ const Index = () => {
                     <span className="text-primary font-bold text-lg terminal-glow">portfolio.sh</span>
                     <span className="text-muted-foreground text-[10px] ml-2 opacity-50">PID 1337 · TTY pts/0 · root</span>
                   </div>
-                  <div className="text-foreground text-xl md:text-3xl font-bold mb-1">
+                  <div className="text-foreground text-lg sm:text-xl md:text-3xl font-bold mb-1">
                     <TypingText text="Hey, I'm Rohan Chatterjee 👋" speed={50} />
                   </div>
                   <p className="text-terminal-output text-sm mt-2">
