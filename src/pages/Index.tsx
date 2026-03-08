@@ -28,6 +28,10 @@ const Index = () => {
 
   const { data: repos, isLoading: reposLoading } = useGithubRepos();
 
+  useEffect(() => {
+    window.scrollTo(0, 0);
+  }, []);
+
   const scrollTo = useCallback((section: string) => {
     const refs: Record<string, React.RefObject<HTMLDivElement>> = {
       about: aboutRef,
