@@ -183,7 +183,7 @@ const Index = () => {
                   <div className="grid grid-cols-1 sm:grid-cols-2 gap-2 mt-3">
                     <div className="flex items-start gap-2 text-xs">
                       <GraduationCap className="w-3.5 h-3.5 text-primary mt-0.5 shrink-0" />
-                      <span><span className="text-foreground font-semibold">KIIT University</span> — B.Tech CSE (2024–2028) · CGPA: 7.9</span>
+                      <span><span className="text-foreground font-semibold">KIIT University</span> — B.Tech CSE (2024–2028)</span>
                     </div>
                     <div className="flex items-start gap-2 text-xs">
                       <Briefcase className="w-3.5 h-3.5 text-primary mt-0.5 shrink-0" />
@@ -203,7 +203,7 @@ const Index = () => {
                     </div>
                     <div className="flex items-start gap-2 text-xs">
                       <GraduationCap className="w-3.5 h-3.5 text-primary mt-0.5 shrink-0" />
-                      <span><span className="text-foreground font-semibold">Mayoor School, Abu Dhabi</span> — CBSE · CGPA: 8.42</span>
+                      <span><span className="text-foreground font-semibold">Mayoor School, Abu Dhabi</span> — CBSE</span>
                     </div>
                   </div>
                 </div>
