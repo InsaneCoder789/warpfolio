@@ -187,11 +187,11 @@ const Index = () => {
                     </div>
                     <div className="flex items-start gap-2 text-xs">
                       <Briefcase className="w-3.5 h-3.5 text-primary mt-0.5 shrink-0" />
-                      <span><span className="text-foreground font-semibold">K1000 KIIT</span> — Android Developer (Jan 2026 – Present)</span>
+                      <span><span className="text-foreground font-semibold">GFG KIIT</span> — Android Developer (May 2025 – Present)</span>
                     </div>
                     <div className="flex items-start gap-2 text-xs">
                       <Briefcase className="w-3.5 h-3.5 text-primary mt-0.5 shrink-0" />
-                      <span><span className="text-foreground font-semibold">GFG KIIT</span> — Android Developer (May 2025 – Present)</span>
+                      <span><span className="text-foreground font-semibold">K1000 KIIT</span> — Android Developer (Jan 2026 – Present)</span>
                     </div>
                     <div className="flex items-start gap-2 text-xs">
                       <Shield className="w-3.5 h-3.5 text-primary mt-0.5 shrink-0" />
