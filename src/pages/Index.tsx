@@ -10,7 +10,6 @@ import CommandInput from "@/components/CommandInput";
 import StatusBar from "@/components/StatusBar";
 import CyberGrid from "@/components/CyberGrid";
 import KaliBootScreen from "@/components/KaliBootScreen";
-import KaliBootScreen from "@/components/KaliBootScreen";
 import GithubContributions from "@/components/GithubContributions";
 import { useGithubRepos } from "@/hooks/useGithubRepos";
 
