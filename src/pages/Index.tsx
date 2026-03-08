@@ -204,7 +204,7 @@ const Index = () => {
                     </div>
                     <div className="flex items-start gap-2 text-xs">
                       <GraduationCap className="w-3.5 h-3.5 text-primary mt-0.5 shrink-0" />
-                      <span><span className="text-foreground font-semibold">Mayoor School, Abu Dhabi</span> — CBSE</span>
+                      <span><span className="text-foreground font-semibold">Mayoor Private School, Abu Dhabi</span> — CBSE (2024 Batch)</span>
                     </div>
                   </div>
                 </div>
