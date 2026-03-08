@@ -198,7 +198,7 @@ const Index = () => {
               transition={{ delay: 3.2 }}
               className="text-center text-muted-foreground text-[10px] pt-4 pb-8"
             >
-              built with ❤️ and too much caffeine · © {new Date().getFullYear()} Rohan Chatterjee
+              rochiee24 · © {new Date().getFullYear()}
             </motion.div>
           </div>
         </div>
