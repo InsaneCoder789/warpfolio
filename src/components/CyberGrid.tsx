@@ -87,7 +87,7 @@ const CyberGrid = () => {
         }
         ctx.closePath();
         ctx.strokeStyle = `hsla(142, 70%, 45%, ${opacity})`;
-        ctx.lineWidth = 0.7;
+        ctx.lineWidth = 1;
         ctx.stroke();
 
         // Glow node on proximity
