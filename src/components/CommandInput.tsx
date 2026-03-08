@@ -5,11 +5,13 @@ interface CommandInputProps {
 }
 
 const COMMANDS: Record<string, string> = {
-  help: "Available commands: about, projects, skills, contact, clear, help",
+  help: "Available commands: about, projects, skills, contact, clear, whoami, uname, help",
   about: "Scrolling to about section...",
   projects: "Scrolling to projects section...",
   skills: "Scrolling to skills section...",
   contact: "Scrolling to contact section...",
+  whoami: "root",
+  uname: "Linux kali 6.1.0-kali9-amd64 #1 SMP PREEMPT_DYNAMIC x86_64 GNU/Linux",
   clear: "",
 };
 
@@ -29,7 +31,7 @@ const CommandInput = ({ onCommand }: CommandInputProps) => {
       if (cmd === "clear") {
         setHistory([]);
       } else {
-        const output = COMMANDS[cmd] || `zsh: command not found: ${cmd}. Type 'help' for available commands.`;
+        const output = COMMANDS[cmd] || `bash: ${cmd}: command not found. Type 'help' for available commands.`;
         setHistory((h) => [...h, { cmd: input.trim(), output }]);
       }
       onCommand(cmd);
@@ -50,27 +52,44 @@ const CommandInput = ({ onCommand }: CommandInputProps) => {
       onClick={() => inputRef.current?.focus()}
     >
       {history.map((h, i) => (
-        <div key={i} className="mb-1 animate-fade-in-up">
-          <div className="flex items-center gap-2 text-sm">
-            <span className="text-terminal-prompt font-semibold">❯</span>
-            <span className="text-terminal-command">{h.cmd}</span>
+        <div key={i} className="mb-2 animate-fade-in-up">
+          <div className="text-xs">
+            <span className="text-terminal-prompt">┌──(</span>
+            <span className="text-primary font-bold">root㉿kali</span>
+            <span className="text-terminal-prompt">)-[</span>
+            <span className="text-foreground">~</span>
+            <span className="text-terminal-prompt">]</span>
+          </div>
+          <div className="flex items-center gap-1 text-sm">
+            <span className="text-terminal-prompt">└─$</span>
+            <span className="text-terminal-command ml-1">{h.cmd}</span>
           </div>
           {h.output && <div className="text-terminal-output text-xs pl-5 mt-0.5">{h.output}</div>}
         </div>
       ))}
-      <div className="flex items-center gap-2 text-sm">
-        <span className="text-terminal-prompt font-semibold">❯</span>
-        <input
-          ref={inputRef}
-          type="text"
-          value={input}
-          onChange={(e) => setInput(e.target.value)}
-          onKeyDown={handleKeyDown}
-          className="flex-1 bg-transparent outline-none text-terminal-command caret-terminal-cursor text-sm"
-          spellCheck={false}
-          autoComplete="off"
-          placeholder="type 'help' for commands..."
-        />
+      {/* Active prompt */}
+      <div>
+        <div className="text-xs">
+          <span className="text-terminal-prompt">┌──(</span>
+          <span className="text-primary font-bold">root㉿kali</span>
+          <span className="text-terminal-prompt">)-[</span>
+          <span className="text-foreground">~</span>
+          <span className="text-terminal-prompt">]</span>
+        </div>
+        <div className="flex items-center gap-1 text-sm">
+          <span className="text-terminal-prompt">└─$</span>
+          <input
+            ref={inputRef}
+            type="text"
+            value={input}
+            onChange={(e) => setInput(e.target.value)}
+            onKeyDown={handleKeyDown}
+            className="flex-1 bg-transparent outline-none text-terminal-command caret-terminal-cursor text-sm ml-1"
+            spellCheck={false}
+            autoComplete="off"
+            placeholder="type 'help' for commands..."
+          />
+        </div>
       </div>
     </div>
   );

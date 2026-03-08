@@ -1,6 +1,6 @@
-import { useRef, useCallback, useEffect } from "react";
+import { useRef, useCallback, useEffect, useState } from "react";
 import { motion } from "framer-motion";
-import { Github, MapPin, Code2, Terminal, Instagram, Twitter, Loader2 } from "lucide-react";
+import { Github, MapPin, Code2, Terminal, Instagram, Twitter, Loader2, Skull } from "lucide-react";
 import TerminalTitleBar from "@/components/TerminalTitleBar";
 import TerminalBlock from "@/components/TerminalBlock";
 import TypingText from "@/components/TypingText";
@@ -9,6 +9,8 @@ import SkillBar from "@/components/SkillBar";
 import CommandInput from "@/components/CommandInput";
 import SurveillanceWidget from "@/components/SurveillanceWidget";
 import StatusBar from "@/components/StatusBar";
+import MatrixRain from "@/components/MatrixRain";
+import KaliBootScreen from "@/components/KaliBootScreen";
 import { useGithubRepos } from "@/hooks/useGithubRepos";
 
 const LANG_TO_TECH: Record<string, string[]> = {
@@ -20,11 +22,19 @@ const LANG_TO_TECH: Record<string, string[]> = {
   CSS: ["CSS", "Web"],
 };
 
+const KALI_DRAGON = `    ⠀⠀⠀⠀⠀⠀⣠⣴⣶⣿⣿⣷⣶⣄⣀⣀⠀⠀⠀⠀⠀⠀
+    ⠀⠀⠀⠀⠀⣰⣾⣿⣿⡿⢿⣿⣿⣿⣿⣿⣿⣿⣷⣦⡀⠀⠀
+    ⠀⠀⠀⠀⣸⣿⣿⣿⣿⠃⠀⢻⣿⣿⣿⣿⣿⣿⣿⣿⣿⣧⠀
+    ⠀⠀⠀⣿⣿⣿⣿⣿⡅⠀⠀⠀⢿⣿⣿⣿⣿⣿⣿⠟⠛⣿⠀
+    ⠀⠀⠀⢸⣿⣿⣿⣿⡇⠀⠀⠀⢸⣿⣿⡿⠟⠋⠀⠀⠀⡇⠀
+    ⠀⠀⠀⠀⠻⢿⣿⡿⠁⠀⠀⠀⠈⠛⠋⠀⠀⠀⠀⠀⠀⠀⠀`;
+
 const Index = () => {
   const aboutRef = useRef<HTMLDivElement>(null);
   const projectsRef = useRef<HTMLDivElement>(null);
   const skillsRef = useRef<HTMLDivElement>(null);
   const contactRef = useRef<HTMLDivElement>(null);
+  const [booted, setBooted] = useState(false);
 
   const { data: repos, isLoading: reposLoading } = useGithubRepos();
 
@@ -50,6 +60,9 @@ const Index = () => {
 
   return (
     <div className="min-h-screen bg-terminal-bg scanline relative">
+      {!booted && <KaliBootScreen onComplete={() => setBooted(true)} />}
+      
+      <MatrixRain />
       <SurveillanceWidget />
 
       <div className="relative z-10 flex flex-col min-h-screen">
@@ -61,37 +74,49 @@ const Index = () => {
             {/* Welcome / Hero */}
             <motion.div
               initial={{ opacity: 0 }}
-              animate={{ opacity: 1 }}
+              animate={{ opacity: booted ? 1 : 0 }}
               transition={{ duration: 0.5 }}
               className="mb-8"
             >
-              <div className="flex items-center gap-2 mb-4">
-                <Terminal className="w-5 h-5 text-primary" />
-                <span className="text-primary font-bold text-lg terminal-glow">portfolio.sh</span>
-                <span className="text-muted-foreground text-[10px] ml-2 opacity-50">PID 1337 · TTY pts/0</span>
-              </div>
-              <div className="text-foreground text-xl md:text-3xl font-bold mb-1">
-                <TypingText text="Hey, I'm Rohan Chatterjee 👋" speed={50} />
-              </div>
-              <p className="text-terminal-output text-sm mt-2">
-                InsaneCoder789 · Developer · Open source enthusiast · Python adopter 🐍
-              </p>
-              <p className="text-muted-foreground text-xs mt-1 italic">
-                "If you want to excel in something, you shall know it till its roots"
-              </p>
-              <div className="flex items-center gap-4 mt-3">
-                <a href="https://github.com/InsaneCoder789" target="_blank" rel="noopener noreferrer" className="text-muted-foreground hover:text-primary transition-colors">
-                  <Github className="w-4 h-4" />
-                </a>
-                <a href="https://www.instagram.com/rochiee24/" target="_blank" rel="noopener noreferrer" className="text-muted-foreground hover:text-primary transition-colors">
-                  <Instagram className="w-4 h-4" />
-                </a>
-                <a href="https://twitter.com/RohanCh81145388" target="_blank" rel="noopener noreferrer" className="text-muted-foreground hover:text-primary transition-colors">
-                  <Twitter className="w-4 h-4" />
-                </a>
-                <span className="text-muted-foreground text-xs flex items-center gap-1">
-                  <MapPin className="w-3 h-3" /> Working from home 🏠
-                </span>
+              {/* Kali ASCII art */}
+              <div className="flex items-start gap-6 mb-4">
+                <pre className="text-primary terminal-glow text-[8px] md:text-[10px] leading-tight hidden md:block select-none">
+                  {KALI_DRAGON}
+                </pre>
+                <div className="flex-1">
+                  <div className="flex items-center gap-2 mb-2">
+                    <Skull className="w-5 h-5 text-primary" />
+                    <span className="text-primary font-bold text-lg terminal-glow">portfolio.sh</span>
+                    <span className="text-muted-foreground text-[10px] ml-2 opacity-50">PID 1337 · TTY pts/0 · root</span>
+                  </div>
+                  <div className="text-foreground text-xl md:text-3xl font-bold mb-1">
+                    <TypingText text="Hey, I'm Rohan Chatterjee 👋" speed={50} />
+                  </div>
+                  <p className="text-terminal-output text-sm mt-2">
+                    <span className="text-terminal-success">root@kali</span>
+                    <span className="text-muted-foreground">:</span>
+                    <span className="text-primary">~</span>
+                    <span className="text-muted-foreground"># </span>
+                    InsaneCoder789 · Developer · Open source enthusiast · Python adopter 🐍
+                  </p>
+                  <p className="text-muted-foreground text-xs mt-1 italic">
+                    "If you want to excel in something, you shall know it till its roots"
+                  </p>
+                  <div className="flex items-center gap-4 mt-3">
+                    <a href="https://github.com/InsaneCoder789" target="_blank" rel="noopener noreferrer" className="text-muted-foreground hover:text-primary transition-colors">
+                      <Github className="w-4 h-4" />
+                    </a>
+                    <a href="https://www.instagram.com/rochiee24/" target="_blank" rel="noopener noreferrer" className="text-muted-foreground hover:text-primary transition-colors">
+                      <Instagram className="w-4 h-4" />
+                    </a>
+                    <a href="https://twitter.com/RohanCh81145388" target="_blank" rel="noopener noreferrer" className="text-muted-foreground hover:text-primary transition-colors">
+                      <Twitter className="w-4 h-4" />
+                    </a>
+                    <span className="text-muted-foreground text-xs flex items-center gap-1">
+                      <MapPin className="w-3 h-3" /> Working from home 🏠
+                    </span>
+                  </div>
+                </div>
               </div>
             </motion.div>
 
