@@ -93,8 +93,8 @@ const CyberGrid = () => {
         // Glow node on proximity
         if (dist < 200) {
           ctx.beginPath();
-          ctx.arc(node.x, node.y, 1.5 + proximity * 3, 0, Math.PI * 2);
-          ctx.fillStyle = `hsla(142, 70%, 55%, ${proximity * 1.5})`;
+          ctx.arc(node.x, node.y, 2 + proximity * 4, 0, Math.PI * 2);
+          ctx.fillStyle = `hsla(142, 70%, 60%, ${proximity * 2})`;
           ctx.fill();
         }
       }
