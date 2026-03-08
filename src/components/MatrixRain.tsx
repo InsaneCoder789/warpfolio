@@ -26,7 +26,7 @@ const MatrixRain = () => {
       ctx.fillStyle = "rgba(0, 0, 0, 0.04)";
       ctx.fillRect(0, 0, canvas.width, canvas.height);
 
-      ctx.fillStyle = "hsl(187, 80%, 55%)";
+      ctx.fillStyle = "hsl(142, 70%, 45%)";
       ctx.font = `${fontSize}px monospace`;
       ctx.globalAlpha = 0.08;
 
