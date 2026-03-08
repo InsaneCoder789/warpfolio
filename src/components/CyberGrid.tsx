@@ -72,8 +72,8 @@ const CyberGrid = () => {
         const dx = node.x - mx;
         const dy = node.y - my;
         const dist = Math.sqrt(dx * dx + dy * dy);
-        const proximity = dist < 250 ? (1 - dist / 250) * 0.2 : 0;
-        const waveEffect = Math.sin(node.x * 0.012 + node.y * 0.012 + pulse.wave) * 0.04;
+        const proximity = dist < 250 ? (1 - dist / 250) * 0.35 : 0;
+        const waveEffect = Math.sin(node.x * 0.012 + node.y * 0.012 + pulse.wave) * 0.06;
         const opacity = node.baseOpacity + proximity + waveEffect;
 
         // Hex shape
