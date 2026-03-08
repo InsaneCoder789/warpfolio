@@ -151,14 +151,7 @@ const CyberGrid = () => {
         }
       }
 
-      // Scan line
-      const scanY = (time * 40) % canvas.height;
-      const scanGrad = ctx.createLinearGradient(0, scanY - 4, 0, scanY + 4);
-      scanGrad.addColorStop(0, "hsla(142, 70%, 50%, 0)");
-      scanGrad.addColorStop(0.5, "hsla(142, 70%, 50%, 0.06)");
-      scanGrad.addColorStop(1, "hsla(142, 70%, 50%, 0)");
-      ctx.fillStyle = scanGrad;
-      ctx.fillRect(0, scanY - 4, canvas.width, 8);
+      // (scan line removed)
 
       animFrameRef.current = requestAnimationFrame(draw);
     };
