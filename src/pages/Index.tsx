@@ -1,4 +1,4 @@
-import { useRef, useCallback } from "react";
+import { useRef, useCallback, useEffect } from "react";
 import { motion } from "framer-motion";
 import { Github, MapPin, Code2, Terminal, Instagram, Twitter, Loader2 } from "lucide-react";
 import TerminalTitleBar from "@/components/TerminalTitleBar";
@@ -7,7 +7,7 @@ import TypingText from "@/components/TypingText";
 import ProjectCard from "@/components/ProjectCard";
 import SkillBar from "@/components/SkillBar";
 import CommandInput from "@/components/CommandInput";
-
+import SurveillanceWidget from "@/components/SurveillanceWidget";
 import StatusBar from "@/components/StatusBar";
 import { useGithubRepos } from "@/hooks/useGithubRepos";
 
@@ -28,6 +28,10 @@ const Index = () => {
 
   const { data: repos, isLoading: reposLoading } = useGithubRepos();
 
+  useEffect(() => {
+    window.scrollTo(0, 0);
+  }, []);
+
   const scrollTo = useCallback((section: string) => {
     const refs: Record<string, React.RefObject<HTMLDivElement>> = {
       about: aboutRef,
@@ -46,11 +50,11 @@ const Index = () => {
 
   return (
     <div className="min-h-screen bg-terminal-bg scanline relative">
-      
+      <SurveillanceWidget />
 
       <div className="relative z-10 flex flex-col min-h-screen">
         {/* Terminal Window — full screen */}
-        <div className="flex-1 flex flex-col max-w-6xl mx-auto w-full border-x border-border terminal-box-glow">
+        <div className="flex-1 flex flex-col w-full border-x border-border terminal-box-glow">
           <TerminalTitleBar />
 
           <div className="flex-1 bg-terminal-bg/80 backdrop-blur-sm p-4 md:p-8 lg:px-16 space-y-1 overflow-y-auto pb-12">
@@ -198,7 +202,7 @@ const Index = () => {
               transition={{ delay: 3.2 }}
               className="text-center text-muted-foreground text-[10px] pt-4 pb-8"
             >
-              built with ❤️ and too much caffeine · © {new Date().getFullYear()} Rohan Chatterjee
+              rochiee24 · © {new Date().getFullYear()}
             </motion.div>
           </div>
         </div>
