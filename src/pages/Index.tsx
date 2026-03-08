@@ -101,21 +101,21 @@ const Index = () => {
               initial={{ opacity: 0, y: -10 }}
               animate={{ opacity: booted ? 1 : 0, y: booted ? 0 : -10 }}
               transition={{ duration: 0.4, delay: 0.2 }}
-              className="flex flex-wrap items-center gap-2 mb-4 p-3 rounded-lg bg-terminal-block border border-border"
+              className="flex flex-wrap items-center gap-1.5 sm:gap-2 mb-4 p-2 sm:p-3 rounded-lg bg-terminal-block border border-border"
             >
-              <span className="text-terminal-prompt text-xs mr-1">$</span>
-              <span className="text-muted-foreground text-xs mr-2">quick-nav:</span>
+              <span className="text-terminal-prompt text-[10px] sm:text-xs mr-0.5 sm:mr-1">$</span>
+              <span className="text-muted-foreground text-[10px] sm:text-xs mr-1 sm:mr-2">quick-nav:</span>
               {QUICK_COMMANDS.map((cmd) => (
                 <button
                   key={cmd.label}
                   onClick={() => handleCommand(cmd.label)}
-                  className="text-[11px] px-2.5 py-1 rounded-sm bg-secondary hover:bg-primary/20 text-primary font-medium transition-colors border border-border hover:border-primary/40"
+                  className="text-[10px] sm:text-[11px] px-2 sm:px-2.5 py-0.5 sm:py-1 rounded-sm bg-secondary hover:bg-primary/20 text-primary font-medium transition-colors border border-border hover:border-primary/40"
                   title={cmd.desc}
                 >
                   {cmd.label}
                 </button>
               ))}
-              <span className="text-muted-foreground text-[10px] ml-auto">
+              <span className="text-muted-foreground text-[9px] sm:text-[10px] ml-auto hidden sm:inline">
                 type <span className="text-primary font-semibold">'help'</span> in terminal below for all commands
               </span>
             </motion.div>
