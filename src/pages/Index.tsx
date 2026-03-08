@@ -1,6 +1,6 @@
 import { useRef, useCallback, useEffect, useState } from "react";
 import { motion } from "framer-motion";
-import { Github, MapPin, Code2, Terminal, Instagram, Twitter, Loader2, Skull, GraduationCap, Briefcase, Shield, Smartphone } from "lucide-react";
+import { Github, MapPin, Code2, Terminal, Instagram, Twitter, Loader2, Skull, GraduationCap, Briefcase, Shield, Smartphone, Download, FileText, Trophy, Users } from "lucide-react";
 import TerminalTitleBar from "@/components/TerminalTitleBar";
 import TerminalBlock from "@/components/TerminalBlock";
 import TypingText from "@/components/TypingText";
@@ -32,11 +32,20 @@ const KALI_DRAGON = `    ⠀⠀⠀⠀⠀⠀⣠⣴⣶⣿⣿⣷⣶⣄⣀⣀⠀⠀�
     ⠀⠀⠀⢸⣿⣿⣿⣿⡇⠀⠀⠀⢸⣿⣿⡿⠟⠋⠀⠀⠀⡇⠀
     ⠀⠀⠀⠀⠻⢿⣿⡿⠁⠀⠀⠀⠈⠛⠋⠀⠀⠀⠀⠀⠀⠀⠀`;
 
+const QUICK_COMMANDS = [
+  { label: "about", desc: "Who am I" },
+  { label: "projects", desc: "My work" },
+  { label: "skills", desc: "Tech stack" },
+  { label: "resume", desc: "Download CV" },
+  { label: "contact", desc: "Reach out" },
+];
+
 const Index = () => {
   const aboutRef = useRef<HTMLDivElement>(null);
   const projectsRef = useRef<HTMLDivElement>(null);
   const skillsRef = useRef<HTMLDivElement>(null);
   const contactRef = useRef<HTMLDivElement>(null);
+  const resumeRef = useRef<HTMLDivElement>(null);
   const [booted, setBooted] = useState(false);
 
   const { data: repos, isLoading: reposLoading } = useGithubRepos();
@@ -57,11 +66,19 @@ const Index = () => {
       projects: projectsRef,
       skills: skillsRef,
       contact: contactRef,
+      resume: resumeRef,
     };
     refs[section]?.current?.scrollIntoView({ behavior: "smooth", block: "start" });
   }, []);
 
   const handleCommand = useCallback((cmd: string) => {
+    if (cmd === "resume") {
+      const link = document.createElement("a");
+      link.href = "/Rohan_Chatterjee_Resume.pdf";
+      link.download = "Rohan_Chatterjee_Resume.pdf";
+      link.click();
+      return;
+    }
     if (["about", "projects", "skills", "contact"].includes(cmd)) {
       scrollTo(cmd);
     }
@@ -75,11 +92,33 @@ const Index = () => {
       <SurveillanceWidget />
 
       <div className="relative z-10 flex flex-col min-h-screen">
-        {/* Terminal Window — full screen */}
         <div className="flex-1 flex flex-col w-full border-x border-border terminal-box-glow">
           <TerminalTitleBar />
 
           <div className="flex-1 bg-terminal-bg/80 backdrop-blur-sm p-4 md:p-8 lg:px-16 space-y-1 overflow-y-auto pb-12">
+
+            {/* Quick Navigation Bar */}
+            <motion.div
+              initial={{ opacity: 0, y: -10 }}
+              animate={{ opacity: booted ? 1 : 0, y: booted ? 0 : -10 }}
+              transition={{ duration: 0.4, delay: 0.2 }}
+              className="flex flex-wrap items-center gap-2 mb-4 p-3 rounded-lg bg-terminal-block border border-border"
+            >
+              <span className="text-terminal-prompt text-xs mr-1">$</span>
+              <span className="text-muted-foreground text-xs mr-2">quick-nav:</span>
+              {QUICK_COMMANDS.map((cmd) => (
+                <button
+                  key={cmd.label}
+                  onClick={() => handleCommand(cmd.label)}
+                  className="text-[11px] px-2.5 py-1 rounded-sm bg-secondary hover:bg-primary/20 text-primary font-medium transition-colors border border-border hover:border-primary/40"
+                  title={cmd.desc}
+                >
+                  {cmd.label}
+                </button>
+              ))}
+              <span className="text-muted-foreground text-[10px] ml-auto hidden sm:inline">type &apos;help&apos; below for all commands</span>
+            </motion.div>
+
             {/* Welcome / Hero */}
             <motion.div
               initial={{ opacity: 0 }}
@@ -87,7 +126,6 @@ const Index = () => {
               transition={{ duration: 0.5 }}
               className="mb-8"
             >
-              {/* Kali ASCII art */}
               <div className="flex items-start gap-6 mb-4">
                 <pre className="text-primary terminal-glow text-[8px] md:text-[10px] leading-tight hidden md:block select-none">
                   {KALI_DRAGON}
@@ -106,7 +144,7 @@ const Index = () => {
                     <span className="text-muted-foreground">:</span>
                     <span className="text-primary">~</span>
                     <span className="text-muted-foreground"># </span>
-                    InsaneCoder789 · Developer · Open source enthusiast · Python adopter 🐍
+                    InsaneCoder789 · Software Dev Intern · Open source enthusiast · Python adopter 🐍
                   </p>
                   <p className="text-muted-foreground text-xs mt-1 italic">
                     "If you want to excel in something, you shall know it till its roots"
@@ -137,34 +175,73 @@ const Index = () => {
               <TerminalBlock command="cat about.md" delay={0.6}>
                 <div className="text-terminal-output leading-relaxed space-y-3">
                   <p>
-                    I'm a passionate developer with a love for building things from the ground up.
-                    From full-scale web applications to fun Python projects, I explore tech at its roots.
-                    Currently focused on TypeScript, Dart/Flutter, Kotlin, and Python — always learning,
-                    always building.
+                    Software Development Intern with hands-on experience in Android (Kotlin) and Flutter,
+                    and working knowledge of Firebase and Python. Strong foundation in CS concepts,
+                    experience building UI-centric and logic-driven applications, and a collaborative
+                    mindset developed through team-based projects and hackathons.
                   </p>
                   <div className="grid grid-cols-1 sm:grid-cols-2 gap-2 mt-3">
                     <div className="flex items-start gap-2 text-xs">
                       <GraduationCap className="w-3.5 h-3.5 text-primary mt-0.5 shrink-0" />
-                      <span><span className="text-foreground font-semibold">KIIT University</span> — CS/Tech student, member of K1000 R&D organisation</span>
+                      <span><span className="text-foreground font-semibold">KIIT University</span> — B.Tech CSE (2024–2028) · CGPA: 7.9</span>
                     </div>
                     <div className="flex items-start gap-2 text-xs">
                       <Briefcase className="w-3.5 h-3.5 text-primary mt-0.5 shrink-0" />
-                      <span><span className="text-foreground font-semibold">Full-stack developer</span> — Web apps, mobile apps, database systems</span>
+                      <span><span className="text-foreground font-semibold">K1000 KIIT</span> — Android Developer (Jan 2026 – Present)</span>
+                    </div>
+                    <div className="flex items-start gap-2 text-xs">
+                      <Briefcase className="w-3.5 h-3.5 text-primary mt-0.5 shrink-0" />
+                      <span><span className="text-foreground font-semibold">GFG KIIT</span> — Android Developer (May 2025 – Present)</span>
                     </div>
                     <div className="flex items-start gap-2 text-xs">
                       <Shield className="w-3.5 h-3.5 text-primary mt-0.5 shrink-0" />
-                      <span><span className="text-foreground font-semibold">Cybersecurity enthusiast</span> — Built Lakshman Rekha anti-scam app</span>
+                      <span><span className="text-foreground font-semibold">Cybersecurity</span> — Built Lakshman Rekha anti-scam app</span>
                     </div>
                     <div className="flex items-start gap-2 text-xs">
                       <Smartphone className="w-3.5 h-3.5 text-primary mt-0.5 shrink-0" />
                       <span><span className="text-foreground font-semibold">Mobile dev</span> — Flutter/Dart & Kotlin Android apps</span>
+                    </div>
+                    <div className="flex items-start gap-2 text-xs">
+                      <GraduationCap className="w-3.5 h-3.5 text-primary mt-0.5 shrink-0" />
+                      <span><span className="text-foreground font-semibold">Mayoor School, Abu Dhabi</span> — CBSE · CGPA: 8.42</span>
                     </div>
                   </div>
                 </div>
               </TerminalBlock>
             </div>
 
-            {/* Projects — dynamically fetched */}
+            {/* Experience & Activities */}
+            <TerminalBlock command="cat experience.log" delay={0.8}>
+              <div className="text-terminal-output space-y-3 text-xs leading-relaxed">
+                <div className="flex items-start gap-2">
+                  <Trophy className="w-3.5 h-3.5 text-primary mt-0.5 shrink-0" />
+                  <div>
+                    <span className="text-foreground font-semibold">Smart India Hackathon 2025</span>
+                    <span className="text-muted-foreground"> — Volunteer, KIIT School of CS (Oct 2025)</span>
+                  </div>
+                </div>
+                <div className="flex items-start gap-2">
+                  <Users className="w-3.5 h-3.5 text-primary mt-0.5 shrink-0" />
+                  <div>
+                    <span className="text-foreground font-semibold">Ignithon Hackathon OC</span>
+                    <span className="text-muted-foreground"> — K1000, 12-hour hackathon at KIIT (Aug 2025)</span>
+                  </div>
+                </div>
+                <div className="flex items-start gap-2">
+                  <Users className="w-3.5 h-3.5 text-primary mt-0.5 shrink-0" />
+                  <div>
+                    <span className="text-foreground font-semibold">Shark-A-Thon OC</span>
+                    <span className="text-muted-foreground"> — K1000 × Unstop collab hackathon at KIIT (Dec 2025)</span>
+                  </div>
+                </div>
+                <div className="mt-2 pt-2 border-t border-border">
+                  <span className="text-muted-foreground">Certifications: </span>
+                  <span className="text-foreground">Android App Dev (K1000) · Flutter & Dart (ELabs KIIT)</span>
+                </div>
+              </div>
+            </TerminalBlock>
+
+            {/* Projects */}
             <div ref={projectsRef} className="w-full">
               <TerminalBlock command="ls ~/projects --all --recent" prompt="~/projects" delay={1.0}>
                 {reposLoading ? (
@@ -221,11 +298,44 @@ const Index = () => {
                       <Terminal className="w-3.5 h-3.5" /> Tools & Infrastructure
                     </div>
                     <SkillBar name="Git" level={90} delay={2.3} />
-                    <SkillBar name="MySQL" level={75} delay={2.4} />
-                    <SkillBar name="Linux" level={72} delay={2.5} />
-                    <SkillBar name="Tkinter" level={70} delay={2.6} />
-                    <SkillBar name="Firebase" level={68} delay={2.7} />
-                    <SkillBar name="Android Dev" level={74} delay={2.75} />
+                    <SkillBar name="Firebase" level={74} delay={2.4} />
+                    <SkillBar name="REST APIs" level={78} delay={2.45} />
+                    <SkillBar name="MySQL" level={75} delay={2.5} />
+                    <SkillBar name="Linux" level={72} delay={2.55} />
+                    <SkillBar name="Android Dev" level={80} delay={2.6} />
+                  </div>
+                </div>
+              </TerminalBlock>
+            </div>
+
+            {/* Resume */}
+            <div ref={resumeRef}>
+              <TerminalBlock command="cat ~/resume.pdf --preview" delay={2.4}>
+                <div className="space-y-3">
+                  <div className="flex items-center justify-between">
+                    <div className="flex items-center gap-2 text-sm">
+                      <FileText className="w-4 h-4 text-primary" />
+                      <span className="text-foreground font-semibold">Rohan_Chatterjee_Resume.pdf</span>
+                      <span className="text-muted-foreground text-xs">(1 page)</span>
+                    </div>
+                    <a
+                      href="/Rohan_Chatterjee_Resume.pdf"
+                      download="Rohan_Chatterjee_Resume.pdf"
+                      className="flex items-center gap-1.5 px-3 py-1.5 rounded-md bg-primary/15 hover:bg-primary/25 text-primary text-xs font-medium border border-primary/30 hover:border-primary/50 transition-all"
+                    >
+                      <Download className="w-3.5 h-3.5" />
+                      Download Resume
+                    </a>
+                  </div>
+                  <div className="text-xs text-terminal-output border border-border rounded-md p-3 bg-terminal-bg/50 space-y-2">
+                    <div className="text-foreground font-semibold text-sm">Rohan Chatterjee — Software Development Intern</div>
+                    <div className="text-muted-foreground">KIIT University · chatterjeerohan0204@gmail.com</div>
+                    <div className="grid grid-cols-1 sm:grid-cols-2 gap-1.5 mt-2 pt-2 border-t border-border">
+                      <span>▸ Android (Kotlin) & Flutter developer</span>
+                      <span>▸ Firebase, REST APIs, OOP</span>
+                      <span>▸ K1000 KIIT & GFG KIIT member</span>
+                      <span>▸ SIH 2025 volunteer, Hackathon OC</span>
+                    </div>
                   </div>
                 </div>
               </TerminalBlock>

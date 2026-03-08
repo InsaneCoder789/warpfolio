@@ -6,59 +6,59 @@
 
 @layer base {
   :root {
-    --background: 228 12% 8%;
-    --foreground: 210 20% 88%;
+    --background: 220 15% 6%;
+    --foreground: 120 5% 85%;
 
-    --card: 228 12% 11%;
-    --card-foreground: 210 20% 88%;
+    --card: 220 15% 9%;
+    --card-foreground: 120 5% 85%;
 
-    --popover: 228 12% 11%;
-    --popover-foreground: 210 20% 88%;
+    --popover: 220 15% 9%;
+    --popover-foreground: 120 5% 85%;
 
-    --primary: 187 80% 55%;
-    --primary-foreground: 228 12% 8%;
+    --primary: 142 70% 45%;
+    --primary-foreground: 220 15% 6%;
 
-    --secondary: 228 12% 16%;
-    --secondary-foreground: 210 20% 88%;
+    --secondary: 220 15% 14%;
+    --secondary-foreground: 120 5% 85%;
 
-    --muted: 228 10% 14%;
-    --muted-foreground: 215 12% 50%;
+    --muted: 220 12% 12%;
+    --muted-foreground: 220 10% 48%;
 
-    --accent: 270 60% 65%;
-    --accent-foreground: 210 20% 95%;
+    --accent: 160 60% 40%;
+    --accent-foreground: 120 5% 95%;
 
     --destructive: 0 72% 55%;
     --destructive-foreground: 210 40% 98%;
 
-    --border: 228 12% 18%;
-    --input: 228 12% 18%;
-    --ring: 187 80% 55%;
+    --border: 220 12% 16%;
+    --input: 220 12% 16%;
+    --ring: 142 70% 45%;
 
     --radius: 0.5rem;
 
     /* Terminal-specific tokens */
-    --terminal-bg: 228 12% 6%;
-    --terminal-block: 228 12% 10%;
-    --terminal-block-hover: 228 12% 13%;
-    --terminal-prompt: 135 60% 55%;
-    --terminal-command: 210 20% 95%;
-    --terminal-output: 215 12% 60%;
-    --terminal-cursor: 187 80% 55%;
-    --terminal-success: 135 60% 55%;
+    --terminal-bg: 220 15% 4%;
+    --terminal-block: 220 15% 8%;
+    --terminal-block-hover: 220 15% 11%;
+    --terminal-prompt: 142 70% 45%;
+    --terminal-command: 120 5% 92%;
+    --terminal-output: 220 10% 58%;
+    --terminal-cursor: 142 70% 45%;
+    --terminal-success: 142 70% 45%;
     --terminal-warning: 40 90% 60%;
     --terminal-error: 0 72% 55%;
-    --terminal-link: 187 80% 55%;
-    --terminal-selection: 187 80% 55%;
-    --terminal-glow: 187 80% 55%;
+    --terminal-link: 142 70% 50%;
+    --terminal-selection: 142 70% 45%;
+    --terminal-glow: 142 70% 45%;
 
-    --sidebar-background: 228 12% 8%;
-    --sidebar-foreground: 210 20% 88%;
-    --sidebar-primary: 187 80% 55%;
-    --sidebar-primary-foreground: 228 12% 8%;
-    --sidebar-accent: 228 12% 16%;
-    --sidebar-accent-foreground: 210 20% 88%;
-    --sidebar-border: 228 12% 18%;
-    --sidebar-ring: 187 80% 55%;
+    --sidebar-background: 220 15% 6%;
+    --sidebar-foreground: 120 5% 85%;
+    --sidebar-primary: 142 70% 45%;
+    --sidebar-primary-foreground: 220 15% 6%;
+    --sidebar-accent: 220 15% 14%;
+    --sidebar-accent-foreground: 120 5% 85%;
+    --sidebar-border: 220 12% 16%;
+    --sidebar-ring: 142 70% 45%;
   }
 }
 
