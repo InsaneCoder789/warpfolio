@@ -1,4 +1,5 @@
 import { useQuery } from "@tanstack/react-query";
+import { supabase } from "@/integrations/supabase/client";
 
 export interface GithubRepo {
   name: string;
@@ -10,22 +11,17 @@ export interface GithubRepo {
   fork: boolean;
 }
 
-const GITHUB_USERNAME = "InsaneCoder789";
-const PINNED_REPOS = ["K1000-Website", "k1000-Main", "Trilingo", "Lakshman-Rekha", "Student-Database-Manager"];
-
-const fetchRepos = async (): Promise<GithubRepo[]> => {
-  const res = await fetch(
-    `https://api.github.com/users/${GITHUB_USERNAME}/repos?sort=updated&per_page=30&type=owner`
-  );
-  if (!res.ok) throw new Error("Failed to fetch repos");
-  const repos: GithubRepo[] = await res.json();
-  return repos.filter((r) => PINNED_REPOS.includes(r.name));
+const fetchPinnedRepos = async (): Promise<GithubRepo[]> => {
+  const { data, error } = await supabase.functions.invoke("github-pinned-repos");
+  if (error) throw error;
+  if (!data?.repos) throw new Error("No repos returned");
+  return data.repos as GithubRepo[];
 };
 
 export const useGithubRepos = () => {
   return useQuery({
-    queryKey: ["github-repos", GITHUB_USERNAME],
-    queryFn: fetchRepos,
+    queryKey: ["github-pinned-repos"],
+    queryFn: fetchPinnedRepos,
     staleTime: 1000 * 60 * 10, // 10 min
     refetchOnWindowFocus: false,
   });
