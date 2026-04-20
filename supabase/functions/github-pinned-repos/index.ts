@@ -1,6 +1,9 @@
 // Fetches pinned repos for a GitHub user via GraphQL.
 // Uses GITHUB_TOKEN secret. Public endpoint (no auth required).
-import { corsHeaders } from "@supabase/supabase-js/cors";
+const corsHeaders = {
+  "Access-Control-Allow-Origin": "*",
+  "Access-Control-Allow-Headers": "authorization, x-client-info, apikey, content-type",
+};
 
 const GITHUB_USERNAME = "InsaneCoder789";
 
