@@ -1,6 +1,6 @@
 import { useRef, useCallback, useEffect, useState } from "react"; 
 import { motion } from "framer-motion";
-import { Github, MapPin, Code2, Terminal, Instagram, Twitter, Loader2, Skull, GraduationCap, Briefcase, Shield, Smartphone, Download, FileText, Trophy, Users } from "lucide-react";
+import { Github, MapPin, Code2, Terminal, Instagram, Twitter, Loader2, Skull, GraduationCap, Briefcase, Shield, Smartphone, Download, FileText, Heart } from "lucide-react";
 import TerminalTitleBar from "@/components/TerminalTitleBar";
 import TerminalBlock from "@/components/TerminalBlock";
 import TypingText from "@/components/TypingText";
@@ -12,7 +12,9 @@ import CyberGrid from "@/components/CyberGrid";
 import KaliBootScreen from "@/components/KaliBootScreen";
 import GithubContributions from "@/components/GithubContributions";
 import TechLogosSection from "@/components/TechLogosSection";
+import ExperienceItemCard from "@/components/ExperienceItem";
 import { useGithubRepos } from "@/hooks/useGithubRepos";
+import { EXPERIENCE, VOLUNTEERING, PROFILE_PHOTO } from "@/data/linkedin";
 
 const LANG_TO_TECH: Record<string, string[]> = {
   TypeScript: ["TypeScript", "Web"],
@@ -24,13 +26,6 @@ const LANG_TO_TECH: Record<string, string[]> = {
   Kotlin: ["Kotlin", "Android"],
   Tcl: ["Tkinter", "Python"],
 };
-
-const KALI_DRAGON = `    ⠀⠀⠀⠀⠀⠀⣠⣴⣶⣿⣿⣷⣶⣄⣀⣀⠀⠀⠀⠀⠀⠀
-    ⠀⠀⠀⠀⠀⣰⣾⣿⣿⡿⢿⣿⣿⣿⣿⣿⣿⣿⣷⣦⡀⠀⠀
-    ⠀⠀⠀⠀⣸⣿⣿⣿⣿⠃⠀⢻⣿⣿⣿⣿⣿⣿⣿⣿⣿⣧⠀
-    ⠀⠀⠀⣿⣿⣿⣿⣿⡅⠀⠀⠀⢿⣿⣿⣿⣿⣿⣿⠟⠛⣿⠀
-    ⠀⠀⠀⢸⣿⣿⣿⣿⡇⠀⠀⠀⢸⣿⣿⡿⠟⠋⠀⠀⠀⡇⠀
-    ⠀⠀⠀⠀⠻⢿⣿⡿⠁⠀⠀⠀⠈⠛⠋⠀⠀⠀⠀⠀⠀⠀⠀`;
 
 const QUICK_COMMANDS = [
   { label: "about", desc: "Who am I" },
@@ -127,11 +122,23 @@ const Index = () => {
               transition={{ duration: 0.5 }}
               className="mb-8"
             >
-              <div className="flex items-start gap-6 mb-4">
-                <pre className="text-primary terminal-glow text-[8px] md:text-[10px] leading-tight hidden md:block select-none">
-                  {KALI_DRAGON}
-                </pre>
-                <div className="flex-1">
+              <div className="flex items-start gap-4 sm:gap-6 mb-4">
+                <motion.div
+                  initial={{ opacity: 0, scale: 0.85 }}
+                  animate={{ opacity: 1, scale: 1 }}
+                  transition={{ duration: 0.6, delay: 0.1 }}
+                  className="relative shrink-0 hidden sm:block"
+                >
+                  <div className="absolute inset-0 rounded-full bg-primary/30 blur-xl animate-pulse" />
+                  <img
+                    src={PROFILE_PHOTO}
+                    alt="Rohan Chatterjee"
+                    loading="eager"
+                    className="relative w-24 h-24 md:w-32 md:h-32 rounded-full object-cover border-2 border-primary terminal-box-glow"
+                  />
+                  <div className="absolute -bottom-1 -right-1 w-4 h-4 bg-terminal-success rounded-full border-2 border-terminal-bg" />
+                </motion.div>
+                <div className="flex-1 min-w-0">
                   <div className="flex items-center gap-2 mb-2">
                     <Skull className="w-5 h-5 text-primary" />
                     <span className="text-primary font-bold text-lg terminal-glow">portfolio.sh</span>
@@ -211,34 +218,29 @@ const Index = () => {
               </TerminalBlock>
             </div>
 
-            {/* Experience & Activities */}
-            <TerminalBlock command="cat experience.log" delay={0.8}>
-              <div className="text-terminal-output space-y-3 text-xs leading-relaxed">
-                <div className="flex items-start gap-2">
-                  <Trophy className="w-3.5 h-3.5 text-primary mt-0.5 shrink-0" />
-                  <div>
-                    <span className="text-foreground font-semibold">Smart India Hackathon 2025</span>
-                    <span className="text-muted-foreground"> — Volunteer, KIIT School of CS (Oct 2025)</span>
-                  </div>
-                </div>
-                <div className="flex items-start gap-2">
-                  <Users className="w-3.5 h-3.5 text-primary mt-0.5 shrink-0" />
-                  <div>
-                    <span className="text-foreground font-semibold">Ignithon Hackathon OC</span>
-                    <span className="text-muted-foreground"> — K1000, 12-hour hackathon at KIIT (Aug 2025)</span>
-                  </div>
-                </div>
-                <div className="flex items-start gap-2">
-                  <Users className="w-3.5 h-3.5 text-primary mt-0.5 shrink-0" />
-                  <div>
-                    <span className="text-foreground font-semibold">Shark-A-Thon OC</span>
-                    <span className="text-muted-foreground"> — K1000 × Unstop collab hackathon at KIIT (Dec 2025)</span>
-                  </div>
-                </div>
-                <div className="mt-2 pt-2 border-t border-border">
+            {/* Experience */}
+            <TerminalBlock command="cat experience.log" prompt="~/experience" delay={0.8}>
+              <div className="space-y-2.5">
+                {EXPERIENCE.map((exp, i) => (
+                  <ExperienceItemCard key={exp.company} item={exp} delay={0.9 + i * 0.08} />
+                ))}
+                <div className="mt-3 pt-2 border-t border-border text-xs">
                   <span className="text-muted-foreground">Certifications: </span>
                   <span className="text-foreground">Android App Dev (K1000) · Flutter & Dart (ELabs KIIT)</span>
                 </div>
+              </div>
+            </TerminalBlock>
+
+            {/* Volunteering */}
+            <TerminalBlock command="./volunteering.sh --with-love" prompt="~/giving-back" delay={0.95}>
+              <div className="space-y-2.5">
+                <div className="flex items-center gap-2 text-xs text-terminal-warning mb-1">
+                  <Heart className="w-3.5 h-3.5 fill-terminal-warning" />
+                  <span className="italic">Causes I care about — paying it forward 💚</span>
+                </div>
+                {VOLUNTEERING.map((vol, i) => (
+                  <ExperienceItemCard key={vol.company + vol.role} item={vol} delay={1.0 + i * 0.08} />
+                ))}
               </div>
             </TerminalBlock>
 
