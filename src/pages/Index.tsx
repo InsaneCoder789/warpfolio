@@ -1,6 +1,6 @@
 import { useRef, useCallback, useEffect, useState } from "react"; 
 import { motion } from "framer-motion";
-import { Github, MapPin, Code2, Terminal, Instagram, Twitter, Loader2, Skull, GraduationCap, Briefcase, Shield, Smartphone, Download, FileText, Trophy, Users } from "lucide-react";
+import { Github, MapPin, Code2, Terminal, Instagram, Twitter, Loader2, Skull, GraduationCap, Briefcase, Shield, Smartphone, Download, FileText, Heart } from "lucide-react";
 import TerminalTitleBar from "@/components/TerminalTitleBar";
 import TerminalBlock from "@/components/TerminalBlock";
 import TypingText from "@/components/TypingText";
@@ -12,7 +12,9 @@ import CyberGrid from "@/components/CyberGrid";
 import KaliBootScreen from "@/components/KaliBootScreen";
 import GithubContributions from "@/components/GithubContributions";
 import TechLogosSection from "@/components/TechLogosSection";
+import ExperienceItemCard from "@/components/ExperienceItem";
 import { useGithubRepos } from "@/hooks/useGithubRepos";
+import { EXPERIENCE, VOLUNTEERING, PROFILE_PHOTO } from "@/data/linkedin";
 
 const LANG_TO_TECH: Record<string, string[]> = {
   TypeScript: ["TypeScript", "Web"],
@@ -24,13 +26,6 @@ const LANG_TO_TECH: Record<string, string[]> = {
   Kotlin: ["Kotlin", "Android"],
   Tcl: ["Tkinter", "Python"],
 };
-
-const KALI_DRAGON = `    ⠀⠀⠀⠀⠀⠀⣠⣴⣶⣿⣿⣷⣶⣄⣀⣀⠀⠀⠀⠀⠀⠀
-    ⠀⠀⠀⠀⠀⣰⣾⣿⣿⡿⢿⣿⣿⣿⣿⣿⣿⣿⣷⣦⡀⠀⠀
-    ⠀⠀⠀⠀⣸⣿⣿⣿⣿⠃⠀⢻⣿⣿⣿⣿⣿⣿⣿⣿⣿⣧⠀
-    ⠀⠀⠀⣿⣿⣿⣿⣿⡅⠀⠀⠀⢿⣿⣿⣿⣿⣿⣿⠟⠛⣿⠀
-    ⠀⠀⠀⢸⣿⣿⣿⣿⡇⠀⠀⠀⢸⣿⣿⡿⠟⠋⠀⠀⠀⡇⠀
-    ⠀⠀⠀⠀⠻⢿⣿⡿⠁⠀⠀⠀⠈⠛⠋⠀⠀⠀⠀⠀⠀⠀⠀`;
 
 const QUICK_COMMANDS = [
   { label: "about", desc: "Who am I" },
@@ -127,11 +122,23 @@ const Index = () => {
               transition={{ duration: 0.5 }}
               className="mb-8"
             >
-              <div className="flex items-start gap-6 mb-4">
-                <pre className="text-primary terminal-glow text-[8px] md:text-[10px] leading-tight hidden md:block select-none">
-                  {KALI_DRAGON}
-                </pre>
-                <div className="flex-1">
+              <div className="flex items-start gap-4 sm:gap-6 mb-4">
+                <motion.div
+                  initial={{ opacity: 0, scale: 0.85 }}
+                  animate={{ opacity: 1, scale: 1 }}
+                  transition={{ duration: 0.6, delay: 0.1 }}
+                  className="relative shrink-0 hidden sm:block"
+                >
+                  <div className="absolute inset-0 rounded-full bg-primary/30 blur-xl animate-pulse" />
+                  <img
+                    src={PROFILE_PHOTO}
+                    alt="Rohan Chatterjee"
+                    loading="eager"
+                    className="relative w-24 h-24 md:w-32 md:h-32 rounded-full object-cover border-2 border-primary terminal-box-glow"
+                  />
+                  <div className="absolute -bottom-1 -right-1 w-4 h-4 bg-terminal-success rounded-full border-2 border-terminal-bg" />
+                </motion.div>
+                <div className="flex-1 min-w-0">
                   <div className="flex items-center gap-2 mb-2">
                     <Skull className="w-5 h-5 text-primary" />
                     <span className="text-primary font-bold text-lg terminal-glow">portfolio.sh</span>
