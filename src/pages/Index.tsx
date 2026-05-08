@@ -42,6 +42,7 @@ const Index = () => {
   const contactRef = useRef<HTMLDivElement>(null);
   const resumeRef = useRef<HTMLDivElement>(null);
   const [booted, setBooted] = useState(false);
+  const [photoFailed, setPhotoFailed] = useState(false);
 
   const { data: repos, isLoading: reposLoading } = useGithubRepos();
 
