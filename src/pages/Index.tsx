@@ -42,6 +42,7 @@ const Index = () => {
   const contactRef = useRef<HTMLDivElement>(null);
   const resumeRef = useRef<HTMLDivElement>(null);
   const [booted, setBooted] = useState(false);
+  const [photoFailed, setPhotoFailed] = useState(false);
 
   const { data: repos, isLoading: reposLoading } = useGithubRepos();
 
@@ -130,14 +131,23 @@ const Index = () => {
                   className="relative shrink-0"
                 >
                   <div className="absolute inset-0 rounded-full bg-primary/30 blur-xl animate-pulse" />
-                  <img
-                    src={PROFILE_PHOTO}
-                    alt="Rohan Chatterjee"
-                    loading="eager"
-                    referrerPolicy="no-referrer"
-                    crossOrigin="anonymous"
-                    className="relative w-16 h-16 sm:w-24 sm:h-24 md:w-32 md:h-32 rounded-full object-cover border-2 border-primary terminal-box-glow"
-                  />
+                  {photoFailed ? (
+                    <div
+                      className="relative w-16 h-16 sm:w-24 sm:h-24 md:w-32 md:h-32 rounded-full border-2 border-primary terminal-box-glow bg-gradient-to-br from-primary/30 to-secondary flex items-center justify-center text-3xl sm:text-4xl md:text-5xl font-mono text-primary select-none"
+                      aria-label="Rohan Chatterjee avatar placeholder"
+                    >
+                      <span>🧑‍💻</span>
+                    </div>
+                  ) : (
+                    <img
+                      src={PROFILE_PHOTO}
+                      alt="Rohan Chatterjee"
+                      loading="eager"
+                      referrerPolicy="no-referrer"
+                      onError={() => setPhotoFailed(true)}
+                      className="relative w-16 h-16 sm:w-24 sm:h-24 md:w-32 md:h-32 rounded-full object-cover border-2 border-primary terminal-box-glow"
+                    />
+                  )}
                   <div className="absolute -bottom-1 -right-1 w-4 h-4 bg-terminal-success rounded-full border-2 border-terminal-bg" />
                 </motion.div>
                 <div className="flex-1 min-w-0">
