@@ -127,14 +127,16 @@ const Index = () => {
                   initial={{ opacity: 0, scale: 0.85 }}
                   animate={{ opacity: 1, scale: 1 }}
                   transition={{ duration: 0.6, delay: 0.1 }}
-                  className="relative shrink-0 hidden sm:block"
+                  className="relative shrink-0"
                 >
                   <div className="absolute inset-0 rounded-full bg-primary/30 blur-xl animate-pulse" />
                   <img
                     src={PROFILE_PHOTO}
                     alt="Rohan Chatterjee"
                     loading="eager"
-                    className="relative w-24 h-24 md:w-32 md:h-32 rounded-full object-cover border-2 border-primary terminal-box-glow"
+                    referrerPolicy="no-referrer"
+                    crossOrigin="anonymous"
+                    className="relative w-16 h-16 sm:w-24 sm:h-24 md:w-32 md:h-32 rounded-full object-cover border-2 border-primary terminal-box-glow"
                   />
                   <div className="absolute -bottom-1 -right-1 w-4 h-4 bg-terminal-success rounded-full border-2 border-terminal-bg" />
                 </motion.div>
