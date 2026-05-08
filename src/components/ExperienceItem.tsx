@@ -20,6 +20,8 @@ const ExperienceItemCard = ({ item, delay = 0 }: Props) => {
           src={item.logo}
           alt={`${item.company} logo`}
           loading="lazy"
+          referrerPolicy="no-referrer"
+          crossOrigin="anonymous"
           className="w-full h-full object-cover"
           onError={(e) => {
             (e.currentTarget as HTMLImageElement).style.display = "none";
