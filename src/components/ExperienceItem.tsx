@@ -41,7 +41,7 @@ const ExperienceItemCard = ({ item, delay = 0 }: Props) => {
       transition={{ duration: 0.35, delay }}
       className="flex items-start gap-3 p-3 rounded-md border border-border bg-terminal-block/60 hover:bg-terminal-block-hover/80 hover:terminal-border-glow transition-all"
     >
-      <div className="w-10 h-10 sm:w-11 sm:h-11 shrink-0 rounded-md overflow-hidden bg-gradient-to-br from-primary/20 to-secondary border border-border flex items-center justify-center">
+      <div className={`w-10 h-10 sm:w-11 sm:h-11 shrink-0 overflow-hidden bg-gradient-to-br from-primary/20 to-secondary border border-border flex items-center justify-center ${/donum/i.test(item.company) ? "rounded-full" : "rounded-md"}`}>
         {failed || !item.logo ? (
           <div
             className="flex items-center justify-center w-full h-full text-base sm:text-lg select-none"
