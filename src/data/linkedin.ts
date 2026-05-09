@@ -18,7 +18,7 @@ export const PROFILE_PHOTO = "/profile.png";
 export const EXPERIENCE: ExperienceItem[] = [
   {
     company: "K1000 KIIT",
-    logo: "https://media.licdn.com/dms/image/v2/D560BAQHrvsgepZV2yA/company-logo_200_200/B56ZeDF3qRGQAI-/0/1750251044000/k1000_kiit_logo?e=1778112000&v=beta&t=hxdi-OWKldjjQvqaLB8voJJPz2YqOF18gJp74vBmQxY",
+    logo: "/logos/companies/k1000.jpg",
     role: "Strategy Analyst · Office of Strategy & Growth",
     type: "Full-time",
     duration: "Feb 2026 — Present",
@@ -28,7 +28,7 @@ export const EXPERIENCE: ExperienceItem[] = [
   },
   {
     company: "Donum",
-    logo: "https://media.licdn.com/dms/image/v2/D560BAQGgJ9QaHgPWLg/company-logo_200_200/B56Zc8ESNwH8AU-/0/1749059447312?e=1778112000&v=beta&t=GZtyW84b9gUxlUHBWDzbchTh9huQC-1pIzq1QwcpxAM",
+    logo: "/logos/companies/donum.jpg",
     role: "Junior Software Engineer",
     type: "Full-time",
     duration: "Nov 2025 — Present",
@@ -38,7 +38,7 @@ export const EXPERIENCE: ExperienceItem[] = [
   },
   {
     company: "GeeksforGeeks KIIT",
-    logo: "https://media.licdn.com/dms/image/v2/C560BAQEJSyegMnJCJA/company-logo_100_100/company-logo_100_100/0/1630638010719/geeksforgeeks_kiit_logo?e=1778112000&v=beta&t=OunnmJAecnlKlPjzqf14guWQ6nbEKT0xPfmzOBunosc",
+    logo: "/logos/companies/gfg-kiit.jpg",
     role: "Android App Developer",
     type: "Part-time",
     duration: "Jan 2026 — Present",
@@ -48,7 +48,7 @@ export const EXPERIENCE: ExperienceItem[] = [
   },
   {
     company: "E Labs KIIT",
-    logo: "https://media.licdn.com/dms/image/v2/C510BAQHAv5812jEytw/company-logo_100_100/company-logo_100_100/0/1631440135376/kiit_elabs_logo?e=1778112000&v=beta&t=7v-7hItwqMA5ngxETkUNrLBJeUsE3A7UEaC_ibGsjyQ",
+    logo: "/logos/companies/elabs-kiit.jpg",
     role: "App Developer · Android & Member Development",
     type: "Part-time",
     duration: "Jan 2025 — May 2025",
@@ -61,7 +61,7 @@ export const EXPERIENCE: ExperienceItem[] = [
 export const VOLUNTEERING: ExperienceItem[] = [
   {
     company: "National Service Scheme",
-    logo: "https://media.licdn.com/dms/image/v2/C4E0BAQEJ6yAnaG3CtQ/company-logo_100_100/company-logo_100_100/0/1631346049980?e=1778112000&v=beta&t=miGdKVtR3HFCJuWPMNIOxLn-dAiJ3IwMIw7vXO8qbpQ",
+    logo: "/logos/companies/nss.jpg",
     role: "General Volunteer · Dhara",
     type: "Part-time",
     duration: "Sep 2025 — Present",
