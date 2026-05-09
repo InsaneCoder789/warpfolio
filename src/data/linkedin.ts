@@ -12,8 +12,7 @@ export interface ExperienceItem {
   skills?: string[];
 }
 
-export const PROFILE_PHOTO =
-  "https://media.licdn.com/dms/image/v2/D5603AQHzJgsCNW4vKw/profile-displayphoto-crop_800_800/B56ZtBnbBTHAAI-/0/1766332415183?e=1778112000&v=beta&t=eRIPwfa5UfTCWHcmCqKSGMqJW0Z8wF1NMQln-maFotI";
+export const PROFILE_PHOTO = "/profile.png";
 
 // Latest role per company only
 export const EXPERIENCE: ExperienceItem[] = [
