@@ -81,19 +81,26 @@
 
 @layer utilities {
   .terminal-glow {
-    text-shadow: 0 0 10px hsl(var(--terminal-glow) / 0.5),
-                 0 0 20px hsl(var(--terminal-glow) / 0.3),
-                 0 0 40px hsl(var(--terminal-glow) / 0.1);
+    text-shadow: 0 0 8px hsl(var(--terminal-glow) / 0.55),
+                 0 0 18px hsl(var(--terminal-glow) / 0.25);
   }
 
   .terminal-box-glow {
-    box-shadow: 0 0 15px hsl(var(--terminal-glow) / 0.15),
-                0 0 30px hsl(var(--terminal-glow) / 0.05),
-                inset 0 1px 0 hsl(var(--terminal-glow) / 0.1);
+    box-shadow: 0 0 0 1px hsl(var(--terminal-glow) / 0.18),
+                0 8px 30px -12px hsl(var(--terminal-glow) / 0.35),
+                inset 0 1px 0 hsl(var(--terminal-glow) / 0.08);
   }
 
   .terminal-border-glow {
-    border-color: hsl(var(--terminal-glow) / 0.3);
+    border-color: hsl(var(--terminal-glow) / 0.45);
+    box-shadow: 0 0 18px -6px hsl(var(--terminal-glow) / 0.4);
+  }
+
+  .terminal-gradient-text {
+    background: linear-gradient(135deg, hsl(var(--terminal-glow)) 0%, hsl(160 70% 55%) 100%);
+    -webkit-background-clip: text;
+    background-clip: text;
+    color: transparent;
   }
 
   .scanline {
@@ -101,9 +108,18 @@
       0deg,
       transparent,
       transparent 2px,
-      hsl(var(--terminal-glow) / 0.015) 2px,
-      hsl(var(--terminal-glow) / 0.015) 4px
+      hsl(var(--terminal-glow) / 0.018) 2px,
+      hsl(var(--terminal-glow) / 0.018) 4px
     );
+  }
+
+  .vignette::before {
+    content: "";
+    position: fixed;
+    inset: 0;
+    pointer-events: none;
+    background: radial-gradient(ellipse at center, transparent 55%, hsl(var(--terminal-bg) / 0.85) 100%);
+    z-index: 1;
   }
 }
 

@@ -81,7 +81,7 @@ const Index = () => {
   }, [scrollTo]);
 
   return (
-    <div className="min-h-screen bg-terminal-bg/70 scanline relative">
+    <div className="min-h-screen bg-terminal-bg/70 scanline vignette relative">
       {!booted && <KaliBootScreen onComplete={() => setBooted(true)} />}
       
       <CyberGrid />
@@ -153,8 +153,8 @@ const Index = () => {
                 <div className="flex-1 min-w-0">
                   <div className="flex items-center gap-2 mb-2">
                     <Skull className="w-5 h-5 text-primary" />
-                    <span className="text-primary font-bold text-lg terminal-glow">portfolio.sh</span>
-                    <span className="text-muted-foreground text-[10px] ml-2 opacity-50">PID 1337 · TTY pts/0 · root</span>
+                    <span className="terminal-gradient-text font-bold text-lg tracking-tight">portfolio.sh</span>
+                    <span className="text-muted-foreground text-[10px] ml-2 opacity-60 hidden sm:inline">PID 1337 · TTY pts/0 · root</span>
                   </div>
                   <div className="text-foreground text-lg sm:text-xl md:text-3xl font-bold mb-1">
                     <TypingText text="Hey, I'm Rohan Chatterjee 👋" speed={50} />
