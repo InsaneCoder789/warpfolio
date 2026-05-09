@@ -79,7 +79,7 @@ export const VOLUNTEERING: ExperienceItem[] = [
   },
   {
     company: "KIIT Animal & Environment Welfare Society",
-    logo: "https://media.licdn.com/dms/image/v2/D4E0BAQGhUF6t1oLFPA/company-logo_100_100/company-logo_100_100/0/1714757575050/kaews_logo?e=1778112000&v=beta&t=yRwwY4wPtowQJPBD0OYe96sPX3OZTv-QpZKRn_2BOls",
+    logo: "/logos/companies/kaews.jpg",
     role: "Marketing Team · Advertising & Offline Marketing",
     type: "Part-time",
     duration: "Dec 2025 — Present",
