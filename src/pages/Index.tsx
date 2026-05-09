@@ -81,7 +81,7 @@ const Index = () => {
   }, [scrollTo]);
 
   return (
-    <div className="min-h-screen bg-terminal-bg/70 scanline relative">
+    <div className="min-h-screen bg-terminal-bg/70 scanline vignette relative">
       {!booted && <KaliBootScreen onComplete={() => setBooted(true)} />}
       
       <CyberGrid />
