@@ -70,7 +70,7 @@ export const VOLUNTEERING: ExperienceItem[] = [
   },
   {
     company: "CyberVault KIIT",
-    logo: "https://media.licdn.com/dms/image/v2/D4E0BAQGhUF6t1oLFPA/company-logo_100_100/company-logo_100_100/0/1714757575050/kaews_logo?e=1778112000&v=beta&t=yRwwY4wPtowQJPBD0OYe96sPX3OZTv-QpZKRn_2BOls",
+    logo: "/logos/companies/cybervault.jpg",
     role: "Marketing Team · Advertising",
     type: "Part-time",
     duration: "Aug 2025 — Present",
